@@ -65,6 +65,12 @@
 (global-cake t)
 (cake-set-default-keymap)
 
+;; emacs-cake - work with cakephp2 framework
+(add-to-list 'load-path "~/.emacs.d/ed/emacs-cake2")
+(require 'cake2)
+(global-cake2 t)
+(cake2-set-default-keymap)
+
 ;; easy toggle between php and html modes
 ;; (defun toggle-php-html-mode ()
 ;;   (interactive)
@@ -105,12 +111,12 @@
 (ac-config-default)
 
 ;; rinari - because elpa's version is problematic with rails3
-(require 'ido)
-(ido-mode t)
+;;(require 'ido)
+;;(ido-mode t)
      
 ;; Rinari
-(add-to-list 'load-path "~/.emacs.d/ed/rinari")
-(require 'rinari)
+;;(add-to-list 'load-path "~/.emacs.d/ed/rinari")
+;;(require 'rinari)
 
 ;; rhtml-mode
 (add-to-list 'load-path "~/.emacs.d/ed/rhtml")
@@ -119,15 +125,16 @@
      	  (lambda () (rinari-launch)))
 
 ;; ctags
-(setq rinari-tags-file-name "TAGS")
+;;(setq rinari-tags-file-name "TAGS")
 
 ;; yasnippets-rails
 (load "ed/yasnippets-rails/setup.el")
 
 ;; objective-j mode
-(add-to-list 'load-path "~/.emacs.d/ed/cappuccino")
+;;(add-to-list 'load-path "~/.emacs.d/ed/cappuccino")
 ;;(add-to-list 'load-path "~/.emacs.d/ed/cappuccino/objj-mode.el")
-(require 'objj-mode)
+;;(require 'objj-mode)
 
-(add-to-list 'load-path "~/.emacs.d/ed/html-helper-mode")
-(autoload 'html-helper-mode "html-helper-mode" "Yay HTML" t)
+;; html-helper-mode
+;;(add-to-list 'load-path "~/.emacs.d/ed/html-helper-mode")
+;;(autoload 'html-helper-mode "html-helper-mode" "Yay HTML" t)
