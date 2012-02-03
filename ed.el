@@ -59,17 +59,17 @@
 (add-hook 'php-mode-hook 'pear/php-mode-init)
 
 ;; emacs-cake - work with cakephp framework
-(add-to-list 'load-path "~/.emacs.d/ed/emacs-historyf")
-(add-to-list 'load-path "~/.emacs.d/ed/emacs-cake")
-(require 'cake)
-(global-cake t)
-(cake-set-default-keymap)
+;; (add-to-list 'load-path "~/.emacs.d/ed/emacs-historyf")
+;; (add-to-list 'load-path "~/.emacs.d/ed/emacs-cake")
+;; (require 'cake)
+;; (global-cake t)
+;; (cake-set-default-keymap)
 
 ;; emacs-cake - work with cakephp2 framework
-(add-to-list 'load-path "~/.emacs.d/ed/emacs-cake2")
-(require 'cake2)
-(global-cake2 t)
-(cake2-set-default-keymap)
+;; (add-to-list 'load-path "~/.emacs.d/ed/emacs-cake2")
+;; (require 'cake2)
+;; (global-cake2 t)
+;; (cake2-set-default-keymap)
 
 ;; easy toggle between php and html modes
 ;; (defun toggle-php-html-mode ()
@@ -89,8 +89,8 @@
 (require 'git-emacs)
 
 ;; ruby-end
-(add-to-list 'load-path "~/.emacs.d/ed/ruby-end")
-(require 'ruby-end)
+;; (add-to-list 'load-path "~/.emacs.d/ed/ruby-end")
+;; (require 'ruby-end)
 
 ;; add some hooks to ruby files
 ;; (add-hook 'ruby-mode-hook 'ruby-electric-mode 'ruby-end-mode)
