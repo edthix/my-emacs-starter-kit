@@ -138,3 +138,8 @@
 ;; html-helper-mode
 ;;(add-to-list 'load-path "~/.emacs.d/ed/html-helper-mode")
 ;;(autoload 'html-helper-mode "html-helper-mode" "Yay HTML" t)
+
+(require 'color-theme)
+;;(color-theme-initialize)
+(load-file "~/.emacs.d/elpa/color-theme-railscasts-0.0.2/color-theme-railscasts.el")
+(color-theme-railscasts)
