@@ -127,8 +127,16 @@
 ;; ctags
 ;;(setq rinari-tags-file-name "TAGS")
 
+;; yasnippet
+(add-to-list 'load-path
+             "~/.emacs.d/ed/yasnippet")
+(require 'yasnippet) ;; not yasnippet-bundle
+(yas/global-mode 1)
+
 ;; yasnippets-rails
 (load "ed/yasnippets-rails/setup.el")
+(add-hook 'html-mode-hook
+          (yas/load-directory "~/.emacs.d/ed/yasnippets-rails/rails-snippets"))
 
 ;; objective-j mode
 ;;(add-to-list 'load-path "~/.emacs.d/ed/cappuccino")

@@ -19,3 +19,6 @@
 [submodule "ed/yasnippets-rails"]
 	path = ed/yasnippets-rails
 	url = https://github.com/eschulte/yasnippets-rails.git
+[submodule "ed/yasnippet"]
+	path = ed/yasnippet
+	url = https://github.com/capitaomorte/yasnippet
