@@ -149,5 +149,6 @@
 
 (require 'color-theme)
 ;;(color-theme-initialize)
-(load-file "~/.emacs.d/elpa/color-theme-railscasts-0.0.2/color-theme-railscasts.el")
-(color-theme-railscasts)
+;;(load-file "~/.emacs.d/elpa/color-theme-railscasts-0.0.2/color-theme-railscasts.el")
+;;(color-theme-railscasts)
+
