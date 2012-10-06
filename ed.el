@@ -54,8 +54,8 @@
   "Set some buffer-local variables."
   (setq case-fold-search t)
   (c-set-offset 'arglist-intro '+)
-  (c-set-offset 'arglist-close '0)
-)
+  (c-set-offset 'arglist-close '0))
+
 (add-hook 'php-mode-hook 'pear/php-mode-init)
 
 ;; emacs-cake - work with cakephp framework
@@ -88,35 +88,9 @@
 (add-to-list 'load-path "~/.emacs.d/ed/git-emacs/")
 (require 'git-emacs)
 
-;; ruby-end
-;; (add-to-list 'load-path "~/.emacs.d/ed/ruby-end")
-;; (require 'ruby-end)
-
-;; add some hooks to ruby files
-;; (add-hook 'ruby-mode-hook 'ruby-electric-mode 'ruby-end-mode)
-
-;; darkroom-mode
-;; this is windows only (cannot be turned of in Linux????)
-;;(add-to-list 'load-path "~/.emacs.d/ed/darkroom-mode")
-;;(require 'darkroom-mode)
-
 ;; Adds lein to PATH so that we can use clojure-jack-in properly
 (setenv "PATH" (concat "~/opt/leiningen:" (getenv "PATH")))
 (setenv "PATH" (concat "/home/ed/opt/leiningen:" (getenv "PATH"))) 
-
-;; autocomplete
-(add-to-list 'load-path "~/.emacs.d/ed/auto-complete")
-(require 'auto-complete-config)
-(add-to-list 'ac-dictionary-directories "~/.emacs.d/ed/auto-complete/ac-dict")
-(ac-config-default)
-
-;; rinari - because elpa's version is problematic with rails3
-;;(require 'ido)
-;;(ido-mode t)
-     
-;; Rinari
-;;(add-to-list 'load-path "~/.emacs.d/ed/rinari")
-;;(require 'rinari)
 
 ;; rhtml-mode
 (add-to-list 'load-path "~/.emacs.d/ed/rhtml")
@@ -124,31 +98,8 @@
 (add-hook 'rhtml-mode-hook
      	  (lambda () (rinari-launch)))
 
-;; ctags
-;;(setq rinari-tags-file-name "TAGS")
-
-;; yasnippet
-;;(add-to-list 'load-path
-;;             "~/.emacs.d/ed/yasnippet")
-;;(require 'yasnippet) ;; not yasnippet-bundle
-;;(yas/global-mode 1)
-
 ;; yasnippets-rails
-;;(load "ed/yasnippets-rails/setup.el")
-;;(add-hook 'html-mode-hook
-;;          (yas/load-directory "~/.emacs.d/ed/yasnippets-rails/rails-snippets"))
-
-;; objective-j mode
-;;(add-to-list 'load-path "~/.emacs.d/ed/cappuccino")
-;;(add-to-list 'load-path "~/.emacs.d/ed/cappuccino/objj-mode.el")
-;;(require 'objj-mode)
-
-;; html-helper-mode
-;;(add-to-list 'load-path "~/.emacs.d/ed/html-helper-mode")
-;;(autoload 'html-helper-mode "html-helper-mode" "Yay HTML" t)
-
-;;(require 'color-theme)
-;;(color-theme-initialize)
-;;(load-file "~/.emacs.d/elpa/color-theme-railscasts-0.0.2/color-theme-railscasts.el")
-;;(color-theme-railscasts)
+(load "~/.emacs.d/ed/yasnippets-rails/setup.el")
+(add-hook 'html-mode-hook
+          (yas/load-directory "~/.emacs.d/ed/yasnippets-rails/rails-snippets"))
 
