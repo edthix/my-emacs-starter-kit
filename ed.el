@@ -3,6 +3,14 @@
 (global-set-key "\C-c\C-m" 'execute-extended-command)
 
 ;; indent the buffer
+;; http://stackoverflow.com/questions/4090793/emacs-reindenting-entire-c-buffer
+(defun indent-buffer ()
+  "Indents an entire buffer using the default intenting scheme."
+  (interactive)
+  (save-excursion
+    (delete-trailing-whitespace)
+    (indent-region (point-min) (point-max) nil)    
+    (untabify (point-min) (point-max))))
 (global-set-key (kbd "C-c TAB") 'indent-buffer)
 
 ;; quit stuffs
