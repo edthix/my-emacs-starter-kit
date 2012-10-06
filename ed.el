@@ -128,15 +128,15 @@
 ;;(setq rinari-tags-file-name "TAGS")
 
 ;; yasnippet
-(add-to-list 'load-path
-             "~/.emacs.d/ed/yasnippet")
-(require 'yasnippet) ;; not yasnippet-bundle
-(yas/global-mode 1)
+;;(add-to-list 'load-path
+;;             "~/.emacs.d/ed/yasnippet")
+;;(require 'yasnippet) ;; not yasnippet-bundle
+;;(yas/global-mode 1)
 
 ;; yasnippets-rails
-(load "ed/yasnippets-rails/setup.el")
-(add-hook 'html-mode-hook
-          (yas/load-directory "~/.emacs.d/ed/yasnippets-rails/rails-snippets"))
+;;(load "ed/yasnippets-rails/setup.el")
+;;(add-hook 'html-mode-hook
+;;          (yas/load-directory "~/.emacs.d/ed/yasnippets-rails/rails-snippets"))
 
 ;; objective-j mode
 ;;(add-to-list 'load-path "~/.emacs.d/ed/cappuccino")
@@ -147,7 +147,7 @@
 ;;(add-to-list 'load-path "~/.emacs.d/ed/html-helper-mode")
 ;;(autoload 'html-helper-mode "html-helper-mode" "Yay HTML" t)
 
-(require 'color-theme)
+;;(require 'color-theme)
 ;;(color-theme-initialize)
 ;;(load-file "~/.emacs.d/elpa/color-theme-railscasts-0.0.2/color-theme-railscasts.el")
 ;;(color-theme-railscasts)
