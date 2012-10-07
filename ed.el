@@ -111,3 +111,18 @@
 (add-hook 'html-mode-hook
           (yas/load-directory "~/.emacs.d/ed/yasnippets-rails/rails-snippets"))
 
+;; string interpolation in ruby
+;; http://blog.senny.ch/blog/2012/10/06/emacs-tidbits-for-ruby-developers/
+(defun senny-ruby-interpolate ()
+  "In a double quoted string, interpolate."
+  (interactive)
+  (insert "#")
+  (when (and
+         (looking-back "\".*")
+         (looking-at ".*\""))
+    (insert "{}")
+    (backward-char 1)))
+
+(eval-after-load 'ruby-mode
+  '(progn
+     (define-key ruby-mode-map (kbd "#") 'senny-ruby-interpolate)))
