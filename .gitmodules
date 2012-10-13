@@ -22,3 +22,6 @@
 [submodule "ed/yasnippet"]
 	path = ed/yasnippet
 	url = https://github.com/capitaomorte/yasnippet
+[submodule "ed/auto-complete"]
+	path = ed/auto-complete
+	url = https://github.com/auto-complete/auto-complete.git

@@ -9,7 +9,7 @@
   (interactive)
   (save-excursion
     (delete-trailing-whitespace)
-    (indent-region (point-min) (point-max) nil)    
+    (indent-region (point-min) (point-max) nil)
     (untabify (point-min) (point-max))))
 (global-set-key (kbd "C-c TAB") 'indent-buffer)
 
@@ -31,7 +31,6 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 (setq require-final-newline t)
 (setq major-mode 'text-mode)
-(setq ac-auto-start 3) ;; start completion when entered 3 characters
 ;; turn on paren matching
 (show-paren-mode t)
 (setq show-paren-style 'mixed)
@@ -98,13 +97,13 @@
 
 ;; Adds lein to PATH so that we can use clojure-jack-in properly
 (setenv "PATH" (concat "~/opt/leiningen:" (getenv "PATH")))
-(setenv "PATH" (concat "/home/ed/opt/leiningen:" (getenv "PATH"))) 
+(setenv "PATH" (concat "/home/ed/opt/leiningen:" (getenv "PATH")))
 
 ;; rhtml-mode
 (add-to-list 'load-path "~/.emacs.d/ed/rhtml")
 (require 'rhtml-mode)
 (add-hook 'rhtml-mode-hook
-     	  (lambda () (rinari-launch)))
+          (lambda () (rinari-launch)))
 
 ;; yasnippets-rails
 (load "~/.emacs.d/ed/yasnippets-rails/setup.el")
@@ -126,3 +125,13 @@
 (eval-after-load 'ruby-mode
   '(progn
      (define-key ruby-mode-map (kbd "#") 'senny-ruby-interpolate)))
+
+;; Auto Complete stuffs
+;;(require 'ac-nrepl)
+;; auto-complete for clojure-mode
+(add-hook 'nrepl-mode-hook 'ac-nrepl-setup)
+(eval-after-load "auto-complete"
+  '(add-to-list 'ac-modes 'nrepl-mode))
+(eval-after-load "nrepl"
+  '(add-hook 'clojure-mode-hook 'auto-complete-mode))
+(setq ac-auto-start 3) ;; start completion when entered 3 characters
