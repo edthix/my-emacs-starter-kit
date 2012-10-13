@@ -128,10 +128,16 @@
 
 ;; Auto Complete stuffs
 ;;(require 'ac-nrepl)
-;; auto-complete for clojure-mode
 (add-hook 'nrepl-mode-hook 'ac-nrepl-setup)
+(add-hook 'nrepl-interaction-mode 'ac-nrepl-setup)
 (eval-after-load "auto-complete"
   '(add-to-list 'ac-modes 'nrepl-mode))
+(add-hook 'nrepl-interaction-mode-hook
+          'nrepl-turn-on-eldoc-mode)
+;; remove popup when error occurs in nrepl. Unfortunately popup still
+;; occurs when evaluate with tab
+(setq nrepl-popup-stacktraces nil) 
+;; turn on auto-complete when nrepl turns on
 (eval-after-load "nrepl"
   '(add-hook 'clojure-mode-hook 'auto-complete-mode))
 (setq ac-auto-start 3) ;; start completion when entered 3 characters
