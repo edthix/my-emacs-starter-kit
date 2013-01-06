@@ -62,7 +62,6 @@
   (setq case-fold-search t)
   (c-set-offset 'arglist-intro '+)
   (c-set-offset 'arglist-close '0))
-
 (add-hook 'php-mode-hook 'pear/php-mode-init)
 
 ;; emacs-cake - work with cakephp framework
@@ -73,20 +72,22 @@
 ;; (cake-set-default-keymap)
 
 ;; emacs-cake - work with cakephp2 framework
-;; (add-to-list 'load-path "~/.emacs.d/ed/emacs-cake2")
-;; (require 'cake2)
-;; (global-cake2 t)
-;; (cake2-set-default-keymap)
+(add-to-list 'load-path "~/.emacs.d/ed/emacs-historyf")
+(add-to-list 'load-path "~/.emacs.d/ed/emacs-cake2")
+(require 'cake2)
+(global-cake2 t)
+(cake2-set-default-keymap)
 
-;; easy toggle between php and html modes
-;; (defun toggle-php-html-mode ()
-;;   (interactive)
-;;   "Toggle mode between PHP & HTML Helper modes"
-;;   (cond ((string= mode-name (sgml-xml-mode "XHTML" "HTML"))
-;;          (php-mode))
-;;         ((string= mode-name "PHP")
-;;          (html-mode))))
-;; (global-set-key [f5] 'toggle-php-html-mode)
+;; Easy toggle between php and html modes
+;; inspired by http://www.emacswiki.org/emacs/JonathanArnoldDotEmacs
+(defun toggle-php-html-mode ()
+  (interactive)
+  "Toggle mode between php-mode and html-mode modes"
+  (cond ((string= major-mode "html-mode")
+	 (php-mode))
+	((string= major-mode "php-mode"))
+        (html-mode)))
+(global-set-key [f5] 'toggle-php-html-mode)
 
 ;; http://stackoverflow.com/questions/3545458/disable-hl-line-in-emacs-when-using-emacs-starter-kit
 (remove-hook 'coding-hook 'turn-on-hl-line-mode)
