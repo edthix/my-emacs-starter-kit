@@ -51,6 +51,13 @@
 ;;---------------------------------
 ;; Plugins
 ;;---------------------------------
+
+;; Load anything - required by cake2
+(add-to-list 'load-path "~/.emacs.d/elpa/anything-1.287")
+
+;; Load emacs-historyf - required by cake2
+(add-to-list 'load-path "~/.emacs.d/ed/emacs-historyf")
+
 ;; php-mode - work with php
 (autoload 'php-mode "php-mode" "Major mode for editing php code." t)
 (add-to-list 'auto-mode-alist '("\\.php$" . php-mode))
@@ -72,7 +79,6 @@
 ;; (cake-set-default-keymap)
 
 ;; emacs-cake - work with cakephp2 framework
-(add-to-list 'load-path "~/.emacs.d/ed/emacs-historyf")
 (add-to-list 'load-path "~/.emacs.d/ed/emacs-cake2")
 (require 'cake2)
 (global-cake2 t)
