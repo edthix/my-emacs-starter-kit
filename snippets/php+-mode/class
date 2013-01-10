@@ -1,0 +1,5 @@
+#name : class
+# --
+class $0className{
+  $1
+}
