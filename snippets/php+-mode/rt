@@ -1,0 +1,4 @@
+#contributor : Edham Arief Dawillah <edthix@gmail.com>
+#name : return
+# --
+return $1

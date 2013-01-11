@@ -1,5 +1,5 @@
 #name : class
 # --
-class $0className{
+class $0className {
   $1
 }

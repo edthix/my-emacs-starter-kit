@@ -1,0 +1,5 @@
+#name : fn
+# --
+function $0functionName($a) {
+  $1
+}
