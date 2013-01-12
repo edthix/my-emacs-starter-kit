@@ -151,9 +151,15 @@
 ;; (setq ac-auto-start 3) ;; start completion when entered 3 characters
 
 
+;; ****************************************
+;; Global
+;; ****************************************
 ;; Turn on yasnippets
 (yas-global-mode 1)
 
+;; Turn on auto-complete
+(require 'auto-complete-config)
+(ac-config-default)
 
 ;; ****************************************
 ;; Ruby stuffs
@@ -188,7 +194,11 @@
     (if (equal major-mode 'php+-mode)
         (html-mode))))
 
-(global-set-key [f5] 'toggle-php+-html-mode)
+;; Set to toggle only on html-mode and php+-mode buffers
+(add-hook 'html-mode-hook (lambda () "Turn on f5 toggle for html-mode"
+                            (local-set-key [f5] 'toggle-php+-html-mode)))
+(add-hook 'php+-mode-hook (lambda () "Turn on f5 toggle for php+-mode"
+                            (local-set-key [f5] 'toggle-php+-html-mode)))
 
 ;; Load anything - required by cake2
 ;; (add-to-list 'load-path "~/.emacs.d/elpa/anything-1.287")
@@ -201,3 +211,16 @@
 ;; (require 'cake2)
 ;; (global-cake2 t)
 ;; (cake2-set-default-keymap)
+;; Clojure
+
+;; ****************************************
+;; Clojure stuffs
+;; ****************************************
+;; Turn on ac-nrepl when in nrepl
+(add-hook 'nrepl-mode-hook 'ac-nrepl-setup)
+(add-hook 'nrepl-interaction-mode-hook 'ac-nrepl-setup)
+(eval-after-load "auto-complete"
+  '(add-to-list 'ac-modes 'nrepl-mode))
+
+(add-hook 'nrepl-mode-hook (lambda () "Turn on keybinding for doc"
+                             (local-set-key [f5] 'ac-nrepl-popup-doc)) )

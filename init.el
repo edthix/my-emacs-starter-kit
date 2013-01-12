@@ -22,6 +22,14 @@
 
                       ;; YAML
                       yaml-mode
+
+                      ;; JS
+                      starter-kit-js flymake-jslint
+
+                      ;; Clojure
+                      ac-nrepl align-cljlet cljsbuild-mode clojure-mode
+                      clojure-test-mode clojurescript-mode nrepl
+                      slamhound starter-kit-lisp                      
                       )
   
   "A list of packages to ensure are installed at launch.")
