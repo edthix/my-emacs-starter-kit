@@ -4,14 +4,14 @@
 
 ;; indent the buffer
 ;; http://stackoverflow.com/questions/4090793/emacs-reindenting-entire-c-buffer
-;; (defun indent-buffer ()
-;;   "Indents an entire buffer using the default intenting scheme."
-;;   interactive)
-;; (save-excursion
-;;   (delete-trailing-whitespace)
-;;   (indent-region (point-min) (point-max) nil)
-;;   (untabify (point-min) (point-max)))
-;; (global-set-key (kbd "C-c TAB") 'indent-buffer)
+(defun indent-buffer ()
+  "Indents an entire buffer using the default intenting scheme."
+  interactive)
+(save-excursion
+  (delete-trailing-whitespace)
+  (indent-region (point-min) (point-max) nil)
+  (untabify (point-min) (point-max)))
+(global-set-key (kbd "C-c TAB") 'indent-buffer)
 
 ;; quit stuffs
 (global-set-key (kbd "C-M-g") 'keyboard-quit)
@@ -22,8 +22,9 @@
 ;; (setq default-directory "~public_html") ;; Linux
 
 ;; Put some kungfu for emacs
-;;(recentf-mode t)
-;;(transient-mark-mode t) ;; turn transient
+(recentf-mode t)
+(transient-mark-mode t) ;; turn transient
+
 (global-linum-mode t) ;; turn line numbers on
 (setq make-backup-files nil)
 (setq query-replace-highlight t)
@@ -61,7 +62,7 @@
 ;;     starter-kit-ruby inf-ruby rinari rspec-mode
 ;;     ruby-compilation ruby-end
 ;;     ruby-mode ruby-test-mode flymake-ruby
-    
+
 ;;     ;; PHP
 ;;     php+-mode flymake-php
 
@@ -85,6 +86,12 @@
 ;; (dolist (p my-packages)
 ;;   (when (not (package-installed-p p))
 ;;     (package-install p)))
+
+;; Turn ido mode
+(ido-mode)
+
+;; Turn of tool-bar
+(tool-bar-mode -1)
 
 ;; TODO
 ;; Fix issue https://github.com/technomancy/emacs-starter-kit/pull/145
