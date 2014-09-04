@@ -119,3 +119,10 @@
   (define-key ido-completion-map (kbd "C-p") 'ido-prev-match))
 (add-hook 'ido-setup-hook 'ido-define-keys)
 
+;; Robe - ide like feature (find class/modules)
+(require 'robe)
+(add-hook 'ruby-mode-hook 'robe-mode)
+
+;; Only on mac - get path
+(when (memq window-system '(mac ns))
+  (exec-path-from-shell-initialize))
