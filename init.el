@@ -106,6 +106,10 @@
 (global-set-key (kbd "C-c r r") 'inf-ruby)
 
 ;; projectile
+(projectile-global-mode)
+(add-hook 'ruby-mode-hook 'projectile-on)
+
+
 
 
 
