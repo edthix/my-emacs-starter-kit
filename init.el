@@ -108,6 +108,7 @@
 ;; projectile
 (projectile-global-mode)
 (add-hook 'ruby-mode-hook 'projectile-on)
+(add-hook 'projectile-mode-hook 'projectile-rails-on)
 
 ;; flx-ido decorations
 (setq ido-decorations (quote ("\n-> " "" "\n   " "\n   ..." "[" "]" " [No match]" " [Matched]" " [Not readable]" " [Too big]" " [Confirm]")))
