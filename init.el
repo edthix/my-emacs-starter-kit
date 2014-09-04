@@ -6,11 +6,12 @@
 ;; http://stackoverflow.com/questions/4090793/emacs-reindenting-entire-c-buffer
 (defun indent-buffer ()
   "Indents an entire buffer using the default intenting scheme."
-  interactive)
-(save-excursion
-  (delete-trailing-whitespace)
-  (indent-region (point-min) (point-max) nil)
-  (untabify (point-min) (point-max)))
+  (interactive)
+  (save-excursion
+    (delete-trailing-whitespace)
+    (indent-region (point-min) (point-max) nil)
+    (untabify (point-min) (point-max))))
+
 (global-set-key (kbd "C-c TAB") 'indent-buffer)
 
 ;; quit stuffs
@@ -18,8 +19,8 @@
 (global-set-key (kbd "C-x C-g") 'keyboard-quit)
 
 ;; set ~/public_html as default director
-(setq default-directory "C:/xampp/htdocs") ;; Windows
-;; (setq default-directory "~public_html") ;; Linux
+;; (setq default-directory "C:/xampp/htdocs") ;; Windows
+(setq default-directory "~/public_html") ;; Linux
 
 ;; Put some kungfu for emacs
 (recentf-mode t)
@@ -57,7 +58,7 @@
 
 ;; Add in your own as you wish:
 ;; (defvar my-packages
-;;   '(starter-kit 
+;;   '(starter-kit
 ;;     ;; Ruby
 ;;     starter-kit-ruby inf-ruby rinari rspec-mode
 ;;     ruby-compilation ruby-end
@@ -80,7 +81,7 @@
 ;;     clojure-test-mode nrepl
 ;;     slamhound starter-kit-lisp
 ;;     ;; clojurescript-mode
-;;     )  
+;;     )
 ;;   "A list of packages to ensure are installed at launch.")
 
 ;; (dolist (p my-packages)
@@ -88,7 +89,7 @@
 ;;     (package-install p)))
 
 ;; Turn ido mode
-(ido-mode)
+(ido-mode t)
 
 ;; Turn of tool-bar
 (tool-bar-mode -1)
@@ -115,3 +116,8 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+;; Ruby settings
+;; http://lorefnon.me/2014/02/02/configuring-emacs-for-rails.html
+;; (add-hook 'enh-ruby-mode-hook 'flymake-ruby-load)
+;; (global-set-key (kbd "C-c r r") 'inf-ruby)
