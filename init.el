@@ -126,3 +126,23 @@
 ;; Only on mac - get path
 (when (memq window-system '(mac ns))
   (exec-path-from-shell-initialize))
+
+;; Rspec mode
+(require 'rspec-mode)
+(add-hook 'ruby-mode-hook 'rspec-mode)
+(eval-after-load 'rspec-mode
+  '(rspec-install-snippets))
+
+;; Delete trailing whitespace when saving file
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+
+;; Open init file for re-eval indent function
+(defun fix-indent-eval ()
+  ;;(interactive "P")
+  (find-file "~/.emacs.d/init.el")
+  (goto-char 502)
+  (end-of-line)
+  ;;(eval-last-sexp)
+  ;;(kill-buffer "init.el")
+  )
+(fix-indent-eval)
