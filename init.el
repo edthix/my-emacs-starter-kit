@@ -2,11 +2,160 @@
 ;; (when (not package-archive-contents)
 ;;   (package-refresh-contents))
 
-;; Packages go here
+;;********************************************************************************
+;; Packages config here
+;;********************************************************************************
 (require 'package)
 (add-to-list 'package-archives
-             '("melpa" . "http://melpa.milkbox.net/packages/") t)
+             '("melpa" . "https://melpa.org/packages/") t)
+(add-to-list 'package-archives
+             '("org" . "http://orgmode.org/elpa/") t)
 (package-initialize)
+
+(defvar required-packages
+  '(
+    ;; 1. dependency packages
+    auto-complete
+    company
+    emamux
+    evalator
+    flycheck
+    flycheck-clojure
+    helm
+    projectile
+    yasnippet
+    zenburn-theme
+
+    ;; 2. webdev packages
+    ac-html
+    ac-html-bootstrap
+    ac-html-csswatcher
+    ac-js2
+    csv-mode
+    coffee-mode
+    company-web
+    dom
+    flymake-css
+    flymake-gjshint
+    flymake-json
+    flymake-yaml
+    html-script-src
+    html-to-markdown
+    js-comint
+    js2-mode
+    json-mode
+    json-reformat
+    json-snatcher
+    show-css
+    skewer-mode
+    tagedit
+    web-completion-data
+    yaml-mode
+
+    ;; 3. ruby packages
+    ac-inf-ruby
+    chruby
+    company-inf-ruby
+    emamux-ruby-test
+    enh-ruby-mode
+    flymake-ruby
+    helm-rb
+    helm-rubygems-local
+    helm-rubygems-org
+    inf-ruby
+    logalimacs
+    minitest
+    omniref
+    rake
+    realgud-byebug
+    realgud-pry
+    realgud-rdb2
+    robe
+    rspec-mode
+    ruby-additional
+    ruby-block
+    ruby-compilation
+    ruby-dev
+    ruby-electric
+    ruby-end
+    ruby-factory
+    ruby-guard
+    ruby-hash-syntax
+    ruby-interpolation
+    ruby-refactor
+    ruby-test-mode
+    ruby-tools
+    seeing-is-believing
+    yard-mode
+    zossima
+
+    ;; 4. rails packages
+    cucumber-goto-step
+    ecukes
+    espuds
+    feature-mode
+    projectile-rails
+    rails-log-mode
+    rails-new
+    rhtml-mode
+    rinari
+    helm-rails
+
+    ;; 5. clojure packages
+    4clojure
+    ac-cider
+    align-cljlet
+    cider
+    cider-decompile
+    cider-eval-sexp-fu
+    cider-profile
+    cider-spy
+    clj-refactor
+    cljr-helm
+    cljsbuild-mode
+    clojure-cheatsheet
+    clojure-mode
+    clojure-mode-extra-font-locking
+    clojure-quick-repls
+    clojure-snippets
+    discover-clj-refactor
+    evalator-clojure
+    flycheck-clojure
+    helm-clojuredocs
+    inf-clojure
+    insfactor
+    latest-clojure-libraries
+    sequences
+    slamhound
+    sotclojure
+    typed-clojure-mode
+
+    ;; 6. misc packages
+    ansi
+    anzu
+    codesearch
+    commander
+    direx
+    discover
+    exec-path-from-shell
+    goto-chg
+    ))
+
+(defun packages-installed-p ()
+  (loop for p in required-packages
+        when (not (package-installed-p p)) do (return nil)
+        finally (return t)))
+
+;; if not all packages are installed, check one by one and install the missing ones.
+(unless (packages-installed-p)
+  ;; check for new packages (package versions)
+  (message "%s" "Emacs is now refreshing its package database...")
+  (package-refresh-contents)
+  (message "%s" " done.")
+  ;; install the missing packages
+  (dolist (p required-packages)
+    (when (not (package-installed-p p))
+      (package-install p))))
 
 ;; Switch caps-lock and right ctrl
 (global-set-key "\C-x\C-m" 'execute-extended-command)
@@ -28,7 +177,7 @@
 (defun fix-indent-eval ()
   ;;(interactive "P")
   (find-file "~/.emacs.d/init.el")
-  (goto-char 800)
+  (goto-char 3713)
   (end-of-line)
   ;;(eval-last-sexp)
   ;;(kill-buffer "init.el")
