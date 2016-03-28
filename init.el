@@ -351,20 +351,19 @@
 ;;********************************************************************************
 (add-to-list 'auto-mode-alist '("\\.clj$" . clojure-mode))
 
-;; Paredit mode
-(add-hook 'clojure-mode-hook 'paredit-mode)
+;; Enable paredit-mode
+(add-hook 'clojure-mode-hook #'paredit-mode)
+(add-hook 'cider-repl-mode-hook #'paredit-mode)
+
+;; Enable rainbow-delimiters-mode
+(add-hook 'clojure-mode-hook #'rainbow-delimiters-mode)
+(add-hook 'cider-repl-mode-hook #'rainbow-delimiters-mode)
 
 ;; Auto complete mode
 (add-hook 'clojure-mode-hook 'auto-complete-mode)
 
 ;; Enable el-doc for cider
 (add-hook 'cider-repl-mode-hook #'eldoc-mode)
-
-;; Enable paredit for cider
-(add-hook 'cider-repl-mode-hook #'paredit-mode)
-
-;; Enable rainbow-delimiters
-(add-hook 'cider-repl-mode-hook #'rainbow-delimiters-mode)
 
 ;;********************************************************************************
 
