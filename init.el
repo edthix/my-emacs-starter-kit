@@ -7,7 +7,7 @@
 ;;********************************************************************************
 (require 'package)
 (add-to-list 'package-archives
-             '("melpa" . "https://melpa.org/packages/") t)
+             '("melpa" . "http://melpa.org/packages/") t)
 (add-to-list 'package-archives
              '("org" . "http://orgmode.org/elpa/") t)
 (package-initialize)
@@ -34,7 +34,7 @@
     csv-mode
     coffee-mode
     company-web
-    dom
+    ;;dom
     flymake-css
     flymake-gjshint
     flymake-json
@@ -121,16 +121,27 @@
     discover-clj-refactor
     evalator-clojure
     flycheck-clojure
+    flyparens
     helm-clojuredocs
     inf-clojure
     insfactor
     latest-clojure-libraries
+    nrepl-sync
+    paredit
+    paredit-everywhere
+    paredit-menu
     sequences
     slamhound
     sotclojure
     typed-clojure-mode
 
-    ;; 6. misc packages
+    ;; 8. python packages
+    flymake-python-pyflakes
+    py-smart-operator
+    python-environment
+    python-mode
+
+    ;; 7. misc packages
     ansi
     anzu
     codesearch
@@ -138,13 +149,17 @@
     direx
     discover
     exec-path-from-shell
+    git-commit
     goto-chg
+    magit
+    magit-popup
+    xkcd
     ))
 
 (defun packages-installed-p ()
-  (loop for p in required-packages
-        when (not (package-installed-p p)) do (return nil)
-        finally (return t)))
+  (dolist (p required-packages)
+    (when (not (package-installed-p p))
+      t)))
 
 ;; if not all packages are installed, check one by one and install the missing ones.
 (unless (packages-installed-p)
@@ -177,13 +192,10 @@
 (defun fix-indent-eval ()
   ;;(interactive "P")
   (find-file "~/.emacs.d/init.el")
-  (goto-char 3713)
-  (end-of-line)
-  ;;(eval-last-sexp)
-  ;;(kill-buffer "init.el")
-  )
-(fix-indent-eval)
+  (goto-char 3922)
+  (end-of-line))
 
+(fix-indent-eval)
 
 ;; Keyboard quit shortcut key
 (global-set-key (kbd "C-M-g") 'keyboard-quit)
@@ -357,7 +369,7 @@
  '(custom-enabled-themes (quote (zenburn)))
  '(custom-safe-themes
    (quote
-    ("316d29f8cd6ca980bf2e3f1c44d3a64c1a20ac5f825a167f76e5c619b4e92ff4" default))))
+    ("f3d6a49e3f4491373028eda655231ec371d79d6d2a628f08d5aa38739340540b" "316d29f8cd6ca980bf2e3f1c44d3a64c1a20ac5f825a167f76e5c619b4e92ff4" default))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
