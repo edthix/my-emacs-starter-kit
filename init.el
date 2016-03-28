@@ -154,6 +154,7 @@
     paredit
     paredit-everywhere
     paredit-menu
+    rainbow-delimiters
     sequences
     slamhound
     sotclojure
@@ -255,6 +256,10 @@
 ;; Turn off tool-bar
 (tool-bar-mode 0)
 
+;; Turn on which-key mode
+(which-key-mode t)
+(which-key-setup-side-window-right-bottom)
+
 ;; TODO
 ;; Fix issue https://github.com/technomancy/emacs-starter-kit/pull/145
 ;; (defalias 'inf-ruby-keys 'inf-ruby-setup-keybindings)
@@ -352,7 +357,17 @@
 ;; Auto complete mode
 (add-hook 'clojure-mode-hook 'auto-complete-mode)
 
+;; Enable el-doc for cider
+(add-hook 'cider-repl-mode-hook #'eldoc-mode)
+
+;; Enable paredit for cider
+(add-hook 'cider-repl-mode-hook #'paredit-mode)
+
+;; Enable rainbow-delimiters
+(add-hook 'cider-repl-mode-hook #'rainbow-delimiters-mode)
+
 ;;********************************************************************************
+
 ;; goto-last-change
 (require 'goto-chg)
 
