@@ -295,7 +295,7 @@
 
 ;; projectile
 (projectile-global-mode)
-(add-hook 'ruby-mode-hook 'projectile-on)
+;;(add-hook 'ruby-mode-hook 'projectile-on)
 (add-hook 'projectile-mode-hook 'projectile-rails-on)
 
 ;; flx-ido decorations
@@ -324,6 +324,9 @@
 ;; Delete trailing whitespace when saving file
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
+;; Auto complete mode
+(add-hook 'ruby-mode-hook 'auto-complete-mode)
+
 ;; We wanna see the menu
 (menu-bar-mode t)
 
@@ -335,6 +338,21 @@
    '(("app/uploaders/" "/uploaders/\\(.+\\)_uploader\\.rb$"))
    "app/uploaders/${filename}_uploader.rb"))
 
+;;********************************************************************************
+
+
+;;********************************************************************************
+;; Clojure settings
+;;********************************************************************************
+(add-to-list 'auto-mode-alist '("\\.clj$" . clojure-mode))
+
+;; Paredit mode
+(add-hook 'clojure-mode-hook 'paredit-mode)
+
+;; Auto complete mode
+(add-hook 'clojure-mode-hook 'auto-complete-mode)
+
+;;********************************************************************************
 ;; goto-last-change
 (require 'goto-chg)
 
