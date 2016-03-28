@@ -362,7 +362,8 @@
 ;; Auto complete mode
 (add-hook 'clojure-mode-hook 'auto-complete-mode)
 
-;; Enable el-doc for cider
+;; Enable el-doc-mode
+(add-hook 'clojure-mode-hook #'eldoc-mode)
 (add-hook 'cider-repl-mode-hook #'eldoc-mode)
 
 ;;********************************************************************************
