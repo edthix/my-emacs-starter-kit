@@ -1,9 +1,31 @@
-;; ;; Set some defaults
-;; (when (not package-archive-contents)
-;;   (package-refresh-contents))
+;; Switch caps-lock and right ctrl
+(global-set-key "\C-x\C-m" 'execute-extended-command)
+(global-set-key "\C-c\C-m" 'execute-extended-command)
+(global-set-key (kbd "C-c TAB") 'indent-buffer-fn)
+
+;; indent the buffer
+;; http://stackoverflow.com/questions/4090793/emacs-reindenting-entire-c-buffer
+(defun indent-buffer-fn ()
+  "Indents an entire buffer using the default intenting scheme."
+  (interactive)
+  (save-excursion
+    (delete-trailing-whitespace)
+    (indent-region (point-min) (point-max) nil)
+    (untabify (point-min) (point-max))))
+
+;; Open init file for re-eval indent function.
+;; Call at the end of init
+(defun fix-indent-eval ()
+  ;;(interactive "P")
+  (find-file "~/.emacs.d/init.el")
+  (goto-char 194)
+  (end-of-line))
 
 ;;********************************************************************************
 ;; Packages config here
+;; Set some defaults
+; (when (not package-archive-contents)
+;;   (package-refresh-contents))
 ;;********************************************************************************
 (require 'package)
 (add-to-list 'package-archives
@@ -85,6 +107,7 @@
     ruby-refactor
     ruby-test-mode
     ruby-tools
+    shoulda
     seeing-is-believing
     yard-mode
     zossima
@@ -122,6 +145,7 @@
     evalator-clojure
     flycheck-clojure
     flyparens
+    helm-cider-history
     helm-clojuredocs
     inf-clojure
     insfactor
@@ -171,31 +195,6 @@
   (dolist (p required-packages)
     (when (not (package-installed-p p))
       (package-install p))))
-
-;; Switch caps-lock and right ctrl
-(global-set-key "\C-x\C-m" 'execute-extended-command)
-(global-set-key "\C-c\C-m" 'execute-extended-command)
-
-;; indent the buffer
-;; http://stackoverflow.com/questions/4090793/emacs-reindenting-entire-c-buffer
-(defun indent-buffer-fn ()
-  "Indents an entire buffer using the default intenting scheme."
-  (interactive)
-  (save-excursion
-    (delete-trailing-whitespace)
-    (indent-region (point-min) (point-max) nil)
-    (untabify (point-min) (point-max))))
-
-(global-set-key (kbd "C-c TAB") 'indent-buffer-fn)
-
-;; Open init file for re-eval indent function
-(defun fix-indent-eval ()
-  ;;(interactive "P")
-  (find-file "~/.emacs.d/init.el")
-  (goto-char 3922)
-  (end-of-line))
-
-(fix-indent-eval)
 
 ;; Keyboard quit shortcut key
 (global-set-key (kbd "C-M-g") 'keyboard-quit)
@@ -357,6 +356,9 @@
 ;; Learn more about emacs with discover
 (require 'discover)
 (global-discover-mode 1)
+
+;; after everything loads we call this function to fix indent
+(fix-indent-eval)
 
 ;;******************************************************************************
 ;; Optional for Mac
