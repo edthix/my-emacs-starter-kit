@@ -343,6 +343,27 @@
    '(("app/uploaders/" "/uploaders/\\(.+\\)_uploader\\.rb$"))
    "app/uploaders/${filename}_uploader.rb"))
 
+(defun projectile-rails-find-services ()
+  (interactive)
+  (projectile-rails-find-resource
+   "services: "
+   '(("app/services/" "/services/\\(.+\\)\\.rb$"))
+   "app/services/${filename}.rb"))
+
+(defun projectile-rails-find-workers ()
+  (interactive)
+  (projectile-rails-find-resource
+   "workers: "
+   '(("app/workers/" "/workers/\\(.+\\)_worker\\.rb$"))
+   "app/workers/${filename}_worker.rb"))
+
+(defun projectile-rails-find-listeners ()
+  (interactive)
+  (projectile-rails-find-resource
+   "listeners: "
+   '(("app/listeners/" "/listeners/\\(.+\\)_listener\\.rb$"))
+   "app/listeners/${filename}_listener.rb"))
+
 ;;********************************************************************************
 
 
