@@ -53,14 +53,18 @@
     ac-html-bootstrap
     ac-html-csswatcher
     ac-js2
-    csv-mode
     coffee-mode
     company-web
-    ;;dom
+    css-eldoc
+    csv-mode
+    csv-nav
+    enlive
+    flycheck-css-colorguard
     flymake-css
     flymake-gjshint
     flymake-json
     flymake-yaml
+    helm-css-scss
     html-script-src
     html-to-markdown
     js-comint
@@ -68,11 +72,15 @@
     json-mode
     json-reformat
     json-snatcher
+    less-css-mode
+    scss-mode
     show-css
     skewer-mode
     tagedit
+    web-beautify
     web-completion-data
     yaml-mode
+    zencoding-mode
 
     ;; 3. ruby packages
     ac-inf-ruby
