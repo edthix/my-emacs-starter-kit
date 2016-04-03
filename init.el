@@ -169,10 +169,20 @@
     typed-clojure-mode
 
     ;; 8. python packages
+    anaconda-mode
+    auto-virtualenv
     flymake-python-pyflakes
+    jedi
+    jedi-direx
+    live-py-mode
+    pungi
+    py-autopep8
+    py-import-check
     py-smart-operator
+    python
     python-environment
     python-mode
+    virtualenv
 
     ;; 7. misc packages
     ansi
