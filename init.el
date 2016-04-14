@@ -382,6 +382,20 @@
    '(("app/listeners/" "/listeners/\\(.+\\)_listener\\.rb$"))
    "app/listeners/${filename}_listener.rb"))
 
+(defun projectile-rails-find-models-concerns ()
+  (interactive)
+  (projectile-rails-find-resource
+   "models concerns: "
+   '(("app/models/concerns/" "/concerns/\\(.+\\)\\.rb$"))
+   "app/models/concerns/${filename}.rb"))
+
+(defun projectile-rails-find-controllers-concerns ()
+  (interactive)
+  (projectile-rails-find-resource
+   "controllers concerns: "
+   '(("app/controllers/concerns/" "/concerns/\\(.+\\)\\.rb$"))
+   "app/controllers/concerns/${filename}.rb"))
+
 ;;********************************************************************************
 
 
@@ -450,3 +464,4 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+(put 'narrow-to-region 'disabled nil)
