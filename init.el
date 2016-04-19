@@ -396,6 +396,13 @@
    '(("app/controllers/concerns/" "/concerns/\\(.+\\)\\.rb$"))
    "app/controllers/concerns/${filename}.rb"))
 
+(defun projectile-rails-find-active-admin ()
+  (interactive)
+  (projectile-rails-find-resource
+   "active admin: "
+   '(("app/admin/" "/\\(.+\\)\\.rb$"))
+   "app/admin/${filename}.rb"))
+
 ;;********************************************************************************
 
 
