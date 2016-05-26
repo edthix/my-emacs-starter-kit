@@ -293,6 +293,7 @@
 (add-to-list 'auto-mode-alist '("\\.gemspec$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.ru$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("Gemfile$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("\\.rabl$" . ruby-mode))
 
 ;; flymake check
 (require 'flymake-ruby)
@@ -402,6 +403,13 @@
    "active admin: "
    '(("app/admin/" "/\\(.+\\)\\.rb$"))
    "app/admin/${filename}.rb"))
+
+(defun projectile-rails-find-config ()
+  (interactive)
+  (projectile-rails-find-resource
+   "config: "
+   '(("config/" "\\(.+\\)$"))
+   "config/${filename}.rb"))
 
 ;;********************************************************************************
 
