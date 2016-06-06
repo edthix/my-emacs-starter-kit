@@ -13,7 +13,7 @@
     (indent-region (point-min) (point-max) nil)
     (untabify (point-min) (point-max))))
 
-;; Open init file for re-eval indent function.
+;; Open init file fo  r re-eval indent function.
 ;; Call at the end of init
 (defun fix-indent-eval ()
   ;;(interactive "P")
@@ -24,7 +24,7 @@
 ;;********************************************************************************
 ;; Packages config here
 ;; Set some defaults
-; (when (not package-archive-contents)
+                                        ; (when (not package-archive-contents)
 ;;   (package-refresh-contents))
 ;;********************************************************************************
 (require 'package)
@@ -79,6 +79,7 @@
     tagedit
     web-beautify
     web-completion-data
+    web-mode
     yaml-mode
     zencoding-mode
 
@@ -463,6 +464,21 @@
 
 ;; enable narrow-to-region mode all the time
 (put 'narrow-to-region 'disabled nil)
+
+;;********************************************************************************
+;; Web settings
+;; http://www.cyrusinnovation.com/initial-emacs-setup-for-reactreactnative/
+;;********************************************************************************
+;; web-mode
+(require 'web-mode)
+(add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.rhtml\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.jsx?$" . web-mode))
+
+(setq web-mode-markup-indent-offset 2
+      web-mode-css-indent-offset 2
+      web-mode-code-indent-offset 2)
+(setq js-indent-level 2)
 
 ;;******************************************************************************
 ;; Custom stuffs
