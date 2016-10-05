@@ -185,7 +185,26 @@
     python-mode
     virtualenv
 
-    ;; 7. misc packages
+    ;; 7. Erlang
+    auto-complete-distel
+    company-distel
+    distel-completion-lib
+    edts
+    erlang
+    ivy-erlang-complete
+    lfe-mode
+
+    ;; 8. Elixir
+    alchemist
+    elixir-mode
+    elixir-yasnippets
+    flycheck-credo
+    flycheck-elixir
+    flycheck-mix
+    flymake-elixir
+    ob-elixir
+
+    ;; 9. misc packages
     ansi
     anzu
     codesearch
