@@ -24,7 +24,7 @@
 ;;********************************************************************************
 ;; Packages config here
 ;; Set some defaults
-                                        ; (when (not package-archive-contents)
+;; (when (not package-archive-contents)
 ;;   (package-refresh-contents))
 ;;********************************************************************************
 (require 'package)
@@ -32,7 +32,6 @@
              '("melpa" . "http://melpa.org/packages/") t)
 (add-to-list 'package-archives
              '("org" . "http://orgmode.org/elpa/") t)
-
 
 (package-initialize)
 
