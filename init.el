@@ -32,6 +32,8 @@
              '("melpa" . "http://melpa.org/packages/") t)
 (add-to-list 'package-archives
              '("org" . "http://orgmode.org/elpa/") t)
+
+
 (package-initialize)
 
 (defvar required-packages
@@ -483,6 +485,16 @@
 
 ;; enable narrow-to-region mode all the time
 (put 'narrow-to-region 'disabled nil)
+
+;;********************************************************************************
+;; Elixir settings
+;;********************************************************************************
+(require 'elixir-mode)
+(add-to-list 'auto-mode-alist '("\\.elixir2\\'" . elixir-mode))
+(add-to-list 'auto-mode-alist '("\\.exs\\'" . elixir-mode))
+(add-to-list 'elixir-mode-hook 'alchemist-mode)
+(add-to-list 'elixir-mode-hook 'yas-minor-mode)
+(add-to-list 'elixir-mode-hook 'auto-complete-mode)
 
 ;;********************************************************************************
 ;; Web settings
