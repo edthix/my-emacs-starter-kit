@@ -339,8 +339,8 @@
 (add-hook 'ruby-mode-hook 'eldoc-mode)
 
 ;; projectile
-(projectile-global-mode)
-;;(add-hook 'ruby-mode-hook 'projectile-on)
+(add-hook 'ruby-mode-hook 'projectile-mode)
+(add-hook 'ruby-mode-hook 'projectile-rails-on)
 (add-hook 'projectile-mode-hook 'projectile-rails-on)
 
 ;; flx-ido decorations
