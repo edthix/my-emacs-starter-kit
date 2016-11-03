@@ -339,6 +339,8 @@
 (add-hook 'ruby-mode-hook 'eldoc-mode)
 
 ;; projectile
+(add-hook 'dired-mode-hook 'projectile-mode)
+(add-hook 'dired-mode-hook 'projectile-rails-mode)
 (add-hook 'ruby-mode-hook 'projectile-mode)
 (add-hook 'ruby-mode-hook 'projectile-rails-on)
 (add-hook 'projectile-mode-hook 'projectile-rails-on)
