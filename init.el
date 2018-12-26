@@ -3,6 +3,9 @@
 (global-set-key "\C-c\C-m" 'execute-extended-command)
 (global-set-key (kbd "C-c TAB") 'indent-buffer-fn)
 
+;; Projectile
+(global-set-key (kbd "C-c f") 'projectile-find-file)
+
 ;; indent the buffer
 ;; http://stackoverflow.com/questions/4090793/emacs-reindenting-entire-c-buffer
 (defun indent-buffer-fn ()
@@ -115,7 +118,7 @@
     ruby-guard
     ruby-hash-syntax
     ruby-interpolation
-    ruby-refactor
+    ;; ruby-refactor
     ruby-test-mode
     ruby-tools
     shoulda
@@ -323,8 +326,8 @@
 (add-hook 'ruby-mode-hook 'flymake-ruby-load)
 
 ;; refactor
-(require 'ruby-refactor)
-(add-hook 'ruby-mode-hook 'ruby-refactor-mode-launch)
+;; (require 'ruby-refactor)
+;; (add-hook 'ruby-mode-hook 'ruby-refactor-mode-launch)
 
 ;; Ruby repl inside buffer
 (require 'inf-ruby)
@@ -438,6 +441,11 @@
 
 ;;********************************************************************************
 
+;;********************************************************************************
+;; Global settings
+;;********************************************************************************
+;; Enable company mode in all buffer
+(add-hook 'after-init-hook 'global-company-mode)
 
 ;;********************************************************************************
 ;; Clojure settings
@@ -499,6 +507,8 @@
 (add-to-list 'elixir-mode-hook 'yas-minor-mode)
 (add-to-list 'elixir-mode-hook 'auto-complete-mode)
 (add-to-list 'elixir-mode-hook 'company-mode)
+(add-to-list 'auto-mode-alist '("\\.html.eex\\'" . web-mode))
+
 
 ;;********************************************************************************
 ;; Web settings
@@ -528,10 +538,10 @@
  '(custom-enabled-themes (quote (atom-dark)))
  '(custom-safe-themes
    (quote
-    ("a1289424bbc0e9f9877aa2c9a03c7dfd2835ea51d8781a0bf9e2415101f70a7e" "d8b7af879ad19616a8d1334478a14fc5deeabecd091943806a75a644772f2862" default)))
+    ("2642a1b7f53b9bb34c7f1e032d2098c852811ec2881eec2dc8cc07be004e45a0" "76dc63684249227d64634c8f62326f3d40cdc60039c2064174a7e7a7a88b1587" "e9460a84d876da407d9e6accf9ceba453e2f86f8b86076f37c08ad155de8223c" "a1289424bbc0e9f9877aa2c9a03c7dfd2835ea51d8781a0bf9e2415101f70a7e" "d8b7af879ad19616a8d1334478a14fc5deeabecd091943806a75a644772f2862" default)))
  '(package-selected-packages
    (quote
-    (vue-mode elpy flycheck-dialyxir flycheck-dogma markdown-mode+ markdown-preview-mode zossima zencoding-mode zenburn-theme yard-mode yaml-mode xkcd which-key web-mode web-beautify virtualenv typed-clojure-mode tagedit sotclojure slamhound show-css shoulda sequences seeing-is-believing scss-mode ruby-tools ruby-test-mode ruby-refactor ruby-interpolation ruby-hash-syntax ruby-guard ruby-factory ruby-end ruby-electric ruby-dev ruby-block ruby-additional rubocop rspec-mode robe rinari rhtml-mode realgud-rdb2 realgud-pry realgud-byebug react-snippets rainbow-delimiters rails-new rails-log-mode python-mode py-smart-operator py-import-check py-autopep8 pungi projectile-rails paredit-menu paredit-everywhere omniref ob-elixir nvm nrepl-sync monokai-theme minitest magit logalimacs live-py-mode list-utils lfe-mode less-css-mode latest-clojure-libraries json-mode js-comint jedi-direx insfactor inf-clojure httprepl html-to-markdown html-script-src helm-rubygems-org helm-rubygems-local helm-rb helm-rails helm-css-scss helm-clojuredocs helm-cider-history goto-chg flyparens flymake-yaml flymake-ruby flymake-python-pyflakes flymake-json flymake-jslint flymake-gjshint flymake-elixir flymake-css flymake-coffee flycheck-rebar3 flycheck-mix flycheck-elixir flycheck-css-colorguard flycheck-credo flycheck-clojure feature-mode exec-path-from-shell evalator-clojure enlive enh-ruby-mode emamux-ruby-test elixir-yasnippets edts ecukes discover-clj-refactor cucumber-goto-step csv-nav csv-mode css-eldoc company-web company-inf-ruby company-erlang company-distel coffee-mode codesearch clojure-snippets clojure-quick-repls clojure-mode-extra-font-locking clojure-cheatsheet cljsbuild-mode cljr-helm cider-spy cider-profile cider-eval-sexp-fu cider-decompile chruby auto-virtualenv auto-complete-distel atom-dark-theme anzu anaconda-mode align-cljlet ac-js2 ac-inf-ruby ac-html-csswatcher ac-html-bootstrap ac-html ac-cider ac-alchemist 4clojure))))
+    (auto-yasnippet flycheck-joker org-trello jinja2-mode mmm-jinja2 cypher-mode ob-cypher ein-mumamo ein company-jedi company-anaconda auto-virtualenvwrapper geeknote vue-mode elpy flycheck-dialyxir flycheck-dogma markdown-mode+ markdown-preview-mode zossima zencoding-mode zenburn-theme yard-mode yaml-mode xkcd which-key web-mode web-beautify virtualenv typed-clojure-mode tagedit sotclojure slamhound show-css shoulda sequences seeing-is-believing scss-mode ruby-tools ruby-test-mode ruby-interpolation ruby-hash-syntax ruby-guard ruby-factory ruby-end ruby-electric ruby-dev ruby-block ruby-additional rubocop rspec-mode robe rinari rhtml-mode realgud-rdb2 realgud-pry realgud-byebug react-snippets rainbow-delimiters rails-new rails-log-mode python-mode py-smart-operator py-import-check py-autopep8 pungi projectile-rails paredit-menu paredit-everywhere omniref ob-elixir nvm nrepl-sync monokai-theme minitest magit logalimacs live-py-mode list-utils lfe-mode less-css-mode latest-clojure-libraries json-mode js-comint jedi-direx insfactor inf-clojure httprepl html-to-markdown html-script-src helm-rubygems-org helm-rubygems-local helm-rb helm-rails helm-css-scss helm-clojuredocs helm-cider-history goto-chg flyparens flymake-yaml flymake-ruby flymake-python-pyflakes flymake-json flymake-jslint flymake-gjshint flymake-elixir flymake-css flymake-coffee flycheck-rebar3 flycheck-mix flycheck-elixir flycheck-css-colorguard flycheck-credo flycheck-clojure feature-mode exec-path-from-shell evalator-clojure enlive enh-ruby-mode emamux-ruby-test elixir-yasnippets edts ecukes discover-clj-refactor cucumber-goto-step csv-nav csv-mode css-eldoc company-web company-inf-ruby company-erlang company-distel coffee-mode codesearch clojure-snippets clojure-quick-repls clojure-mode-extra-font-locking clojure-cheatsheet cljsbuild-mode cljr-helm cider-spy cider-profile cider-eval-sexp-fu cider-decompile chruby auto-virtualenv auto-complete-distel atom-dark-theme anzu anaconda-mode align-cljlet ac-js2 ac-inf-ruby ac-html-csswatcher ac-html-bootstrap ac-html ac-cider ac-alchemist 4clojure))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
