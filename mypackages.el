@@ -5,8 +5,6 @@
     ansi
     anzu
     auto-complete
-    codesearch
-    commander
     company
     direx
     discover
