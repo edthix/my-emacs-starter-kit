@@ -66,6 +66,20 @@
     flymake-elixir
     lfe-mode
     ob-elixir
+
+    ;; docker
+    docker
+    docker-api
+    docker-cli
+    docker-compose-mode
+    dockerfile-mode
+
+    ;; kubernets
+    k8s-mode
+    kubel
+    kubernetes
+    kubernetes-helm
+    kubernetes-tramp
     ))
 
 (defun packages-installed-p ()
