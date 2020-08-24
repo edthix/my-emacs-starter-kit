@@ -5,6 +5,7 @@
 (global-set-key "\C-x\C-m" 'execute-extended-command)
 (global-set-key "\C-c\C-m" 'execute-extended-command)
 (global-set-key (kbd "C-c TAB") 'indent-buffer-fn)
+
 ;; Keyboard quit shortcut key
 (global-set-key (kbd "C-M-g") 'keyboard-quit)
 (global-set-key (kbd "C-x C-g") 'keyboard-quit)
@@ -57,7 +58,7 @@
 (setq initial-scratch-message nil)
 
 ;; Get back font antialiasing
-(push '(font-backend xft x) default-frame-alist)
+;; (push '(font-backend xft x) default-frame-alist);; Note: Breaks on Emacs 27.1
 (setq font-lock-maximum-decoration t)
 
 ;; http://mixandgo.com/blog/how-i-ve-convinced-emacs-to-dance-with-ruby
@@ -124,6 +125,11 @@
 
 ;; remove trailing whitespaces
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
+
+;; verb-mode
+(with-eval-after-load 'org
+  (define-key org-mode-map (kbd "C-c C-r") verb-command-map))
+
 
 ;;********************************************************************************
 ;; End - Global configs
@@ -210,23 +216,3 @@
 (fix-indent-eval)
 (print "Emacs initialized")
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-enabled-themes (quote (material)))
- '(custom-safe-themes
-   (quote
-    ("a24c5b3c12d147da6cef80938dca1223b7c7f70f2f382b26308eba014dc4833a" default)))
- '(package-selected-packages
-   (quote
-    (typescript-mode csv-mode zenburn-theme yaml-imenu xkcd which-key web-mode virtualenv spacemacs-theme show-css projectile ob-elixir material-theme magithub lsp-elixir\.el lfe-mode json-navigator json-mode js2-mode helm flyparens flymd flymake-yaml flymake-shell flymake-python-pyflakes flymake-json flymake-elixir flymake-css flycheck-rebar3 flycheck-mix flycheck-elixir flycheck-dialyzer flycheck-dialyxir flycheck-credo find-file-in-project exec-path-from-shell evalator erlstack-mode enlive emamux elpy elixir-yasnippets edts discover direx csv company-web company-erlang company-distel auto-virtualenv auto-complete-distel anzu ansi ac-html-csswatcher ac-html-bootstrap ac-html ac-alchemist 0blayout))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
-(put 'downcase-region 'disabled nil)
-(put 'upcase-region 'disabled nil)
