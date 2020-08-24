@@ -58,7 +58,7 @@
 (setq initial-scratch-message nil)
 
 ;; Get back font antialiasing
-(push '(font-backend xft x) default-frame-alist)
+;; (push '(font-backend xft x) default-frame-alist);; Note: Breaks on Emacs 27.1
 (setq font-lock-maximum-decoration t)
 
 ;; http://mixandgo.com/blog/how-i-ve-convinced-emacs-to-dance-with-ruby
