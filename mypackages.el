@@ -48,8 +48,6 @@
     import-js
     prettier-js
 
-
-
     ;; 3. python packages
     auto-virtualenv
     elpy
@@ -87,6 +85,11 @@
     kubernetes
     kubernetes-helm
     kubernetes-tramp
+
+    ;; 7. lsp
+    company-box
+    lsp-ui
+    lsp-treemacs
     ))
 
 (defun packages-installed-p ()
