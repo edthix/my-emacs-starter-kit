@@ -6,7 +6,7 @@
 (global-set-key "\C-c\C-m" 'execute-extended-command)
 (global-set-key (kbd "C-c TAB") 'indent-buffer-fn)
 
-;; Keyboard quit shortcut key
+;; fn quit shortcut key
 (global-set-key (kbd "C-M-g") 'keyboard-quit)
 (global-set-key (kbd "C-x C-g") 'keyboard-quit)
 
@@ -154,22 +154,25 @@
 ;;********************************************************************************
 ;; Start - Clojure configs
 ;;********************************************************************************
-;; (add-to-list 'auto-mode-alist '("\\.clj$" . clojure-mode))
+;; we want to run cider
+(add-to-list 'exec-path "/usr/local/bin")
 
-;; ;; Enable paredit-mode
-;; (add-hook 'clojure-mode-hook #'paredit-mode)
-;; (add-hook 'cider-repl-mode-hook #'paredit-mode)
+(add-to-list 'auto-mode-alist '("\\.clj$" . clojure-mode))
 
-;; ;; Enable rainbow-delimiters-mode
-;; (add-hook 'clojure-mode-hook #'rainbow-delimiters-mode)
-;; (add-hook 'cider-repl-mode-hook #'rainbow-delimiters-mode)
+;; Enable paredit-mode
+(add-hook 'clojure-mode-hook #'paredit-mode)
+(add-hook 'cider-repl-mode-hook #'paredit-mode)
 
-;; ;; Auto complete mode
-;; (add-hook 'clojure-mode-hook 'auto-complete-mode)
+;; Enable rainbow-delimiters-mode
+(add-hook 'clojure-mode-hook #'rainbow-delimiters-mode)
+(add-hook 'cider-repl-mode-hook #'rainbow-delimiters-mode)
+
+;; Auto complete mode
+(add-hook 'clojure-mode-hook 'auto-complete-mode)
 
 ;; ;; Enable el-doc-mode
-;; (add-hook 'clojure-mode-hook #'eldoc-mode)
-;; (add-hook 'cider-repl-mode-hook #'eldoc-mode)
+(add-hook 'clojure-mode-hook #'eldoc-mode)
+(add-hook 'cider-repl-mode-hook #'eldoc-mode)
 
 ;;********************************************************************************
 ;; End - Clojure configs

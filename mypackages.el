@@ -24,6 +24,7 @@
     zenburn-theme
     flymd
     flyparens
+    tide
 
     ;; 2. webdev packages
     ac-html
@@ -42,14 +43,20 @@
     web-beautify
     web-mode
     yaml-mode
+    rxjs-mode
+    typescript-mode
+    import-js
+    prettier-js
 
-    ;; 8. python packages
+
+
+    ;; 3. python packages
     auto-virtualenv
     elpy
     flymake-python-pyflakes
     virtualenv
 
-    ;; 7. Erlang
+    ;; 4. Erlang
     alchemist
     auto-complete-distel
     company-distel
@@ -67,14 +74,14 @@
     lfe-mode
     ob-elixir
 
-    ;; docker
+    ;; 5. docker
     docker
     docker-api
     docker-cli
     docker-compose-mode
     dockerfile-mode
 
-    ;; kubernets
+    ;; 6. kubernets
     k8s-mode
     kubel
     kubernetes
