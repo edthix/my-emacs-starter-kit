@@ -85,7 +85,7 @@
 (setq-default tab-width 4)
 
 ;; projectile key
-(global-set-key (kbd "C-c f") 'projectile-find-file)
+(global-set-key (kbd "C-c f") 'project-find-file)
 
 ;; anzu mode
 ;; (global-anzu-mode +1)
