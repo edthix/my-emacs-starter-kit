@@ -1,6 +1,11 @@
 ;;********************************************************************************
 ;; Start - Global configs
+;; This is the standard stuffs we want to use
 ;;********************************************************************************
+
+;; Enable better-defaults
+(require 'better-defaults)
+
 ;; Switch caps-lock and right ctrl
 (global-set-key "\C-x\C-m" 'execute-extended-command)
 (global-set-key "\C-c\C-m" 'execute-extended-command)
@@ -25,7 +30,7 @@
 (defun fix-indent-eval ()
   ;;(interactive "P")
   (find-file "~/.emacs.d/init.el")
-  (goto-char 378)
+  (goto-char 480)
   (end-of-line))
 
 ;; set ~/public_html as default director
@@ -225,13 +230,33 @@
 ;; End - Angular2 configs
 ;;********************************************************************************
 
-(fix-indent-eval)
-
 ;;********************************************************************************
-;; lsp-mode
+;; Start - Python configs
 ;;********************************************************************************
 
+(elpy-enable)
+;; https://emacs.stackexchange.com/questions/53383/python-shell-warning-about-readline-and-completion
+(setq python-shell-completion-native-enable nil)
+
+;; Enable Flycheck
+(when (require 'flycheck nil t)
+  (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
+  (add-hook 'elpy-mode-hook 'flycheck-mode))
+
+;; Enable autopep8
+(require 'py-autopep8)
+(add-hook 'elpy-mode-hook 'py-autopep8-enable-on-save)
 
 ;;********************************************************************************
+;; End - Python configs
+;;********************************************************************************
+
+;;********************************************************************************
+;; End of the init script
+;;********************************************************************************
+(fix-indent-eval) ;; start emacs and go to init tab function above
+(load-theme 'material t)
 (print "Emacs initialized")
+;;********************************************************************************
+;; End of the init script
 ;;********************************************************************************
