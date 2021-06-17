@@ -3,9 +3,6 @@
 ;; This is the standard stuffs we want to use
 ;;********************************************************************************
 
-;; Enable better-defaults
-(require 'better-defaults)
-
 ;; Switch caps-lock and right ctrl
 (global-set-key "\C-x\C-m" 'execute-extended-command)
 (global-set-key "\C-c\C-m" 'execute-extended-command)
@@ -30,7 +27,7 @@
 (defun fix-indent-eval ()
   ;;(interactive "P")
   (find-file "~/.emacs.d/init.el")
-  (goto-char 480)
+  (goto-char 433)
   (end-of-line))
 
 ;; set ~/public_html as default director
@@ -256,6 +253,10 @@
 ;;********************************************************************************
 (fix-indent-eval) ;; start emacs and go to init tab function above
 (load-theme 'material t)
+
+;; Enable better-defaults
+(require 'better-defaults)
+
 (print "Emacs initialized")
 ;;********************************************************************************
 ;; End of the init script
