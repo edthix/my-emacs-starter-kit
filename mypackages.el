@@ -5,6 +5,7 @@
     ansi
     anzu
     auto-complete
+    better-defaults
     company
     direx
     discover
@@ -12,6 +13,8 @@
     evalator
     exec-path-from-shell
     flycheck
+    flymd
+    flyparens
     git-commit
     helm
     magit
@@ -19,12 +22,10 @@
     markdown-mode
     material-theme
     projectile
+    tide
     xkcd
     yasnippet
     zenburn-theme
-    flymd
-    flyparens
-    tide
 
     ;; 2. webdev packages
     ac-html
@@ -35,18 +36,17 @@
     flymake-css
     flymake-json
     flymake-yaml
+    import-js
     js2-mode
     json-mode
     json-reformat
     json-snatcher
+    prettier-js
     show-css
+    typescript-mode
     web-beautify
     web-mode
     yaml-mode
-    rxjs-mode
-    typescript-mode
-    import-js
-    prettier-js
 
     ;; 3. python packages
     auto-virtualenv
@@ -88,22 +88,28 @@
 
     ;; 7. lsp
     company-box
-    lsp-ui
     lsp-treemacs
+    lsp-ui
     ))
+
+;; Set some defaults
+(require 'package)
+(add-to-list 'package-archives
+             '("melpa" . "http://melpa.org/packages/") t)
+(package-initialize)
 
 (defun packages-installed-p ()
   (dolist (p required-packages)
     (when (not (package-installed-p p))
       t)))
 
-;; ;; if not all packages are installed, check one by one and install the missing ones.
-;; (unless (packages-installed-p)
-;;   ;; check for new packages (package versions)
-;;   (message "%s" "Emacs is now refreshing its package database...")
-;;   (package-refresh-contents)
-;;   (message "%s" " done.")
-;;   ;; install the missing packages
-;;   (dolist (p required-packages)
-;;     (when (not (package-installed-p p))
-;;       (package-install p))))
+;; if not all packages are installed, check one by one and install the missing ones.
+(unless (packages-installed-p)
+  ;; check for new packages (package versions)
+  (message "%s" "Emacs is now refreshing its package database...")
+  (package-refresh-contents)
+  (message "%s" " done.")
+  ;; install the missing packages
+  (dolist (p required-packages)
+    (when (not (package-installed-p p))
+      (package-install p))))
