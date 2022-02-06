@@ -32,7 +32,8 @@
 
 ;; set ~/public_html as default director
 ;; (setq default-directory "C:/xampp/htdocs") ;; Windows
-(setq default-directory "~/public_html") ;; Linux
+;; (setq default-directory "~/public_html") ;; Mac
+(setq default-directory "~/Projects") ;; Mac
 
 ;; Put some kungfu for emacs
 (recentf-mode t)
