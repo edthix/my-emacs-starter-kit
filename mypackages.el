@@ -53,6 +53,7 @@
     elpy
     flymake-python-pyflakes
     virtualenv
+    py-autopep8
 
     ;; 4. Erlang
     alchemist
@@ -67,7 +68,6 @@
     flycheck-dialyxir
     flycheck-dialyzer
     flycheck-elixir
-    flycheck-mix
     flymake-elixir
     lfe-mode
     ob-elixir
