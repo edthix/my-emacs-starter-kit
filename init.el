@@ -89,6 +89,9 @@
 
 ;; projectile key
 (global-set-key (kbd "C-c f") 'project-find-file)
+(global-set-key (kbd "C-c p") 'project-find-regexp)
+;; (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+;; (projectile-mode 1)
 
 ;; anzu mode
 ;; (global-anzu-mode +1)
@@ -232,22 +235,49 @@
 ;; Start - Python configs
 ;;********************************************************************************
 
-(elpy-enable)
+;; (elpy-enable)
 ;; https://emacs.stackexchange.com/questions/53383/python-shell-warning-about-readline-and-completion
-(setq python-shell-completion-native-enable nil)
+;; (setq python-shell-completion-native-enable nil)
 
 ;; Enable Flycheck
-(when (require 'flycheck nil t)
-  (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
-  (add-hook 'elpy-mode-hook 'flycheck-mode))
+;; (when (require 'flycheck nil t)
+;;   (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
+;;   (add-hook 'elpy-mode-hook 'flycheck-mode))
 
 ;; Enable autopep8
-(require 'py-autopep8)
-(add-hook 'elpy-mode-hook 'py-autopep8-enable-on-save)
+;; (require 'py-autopep8)
+;; (add-hook 'elpy-mode-hook 'py-autopep8-enable-on-save)
+
+
 
 ;;********************************************************************************
 ;; End - Python configs
 ;;********************************************************************************
+
+;;********************************************************************************
+;; Start - TypeScript configs
+;;********************************************************************************
+;; (add-hook 'typescript-mode-hook '(setq tab-width 2))
+
+(add-hook 'typescript-mode-hook
+          (lambda ()
+            (when (string-match-p "^  [A-Za-z]" (buffer-string))
+              (make-variable-buffer-local 'typescript-indent-level)
+              (set-variable 'typescript-indent-level 2))))
+
+;;********************************************************************************
+;; End - TypeScript configs
+;;********************************************************************************
+
+;;********************************************************************************
+;; Start - Dbdiagram configs
+;;********************************************************************************
+(load-file "~/.emacs.d/third-parties/dbd-mode/dbdiagram-mode.el")
+
+;;********************************************************************************
+;; End - Dbdiagram configs
+;;********************************************************************************
+
 
 ;;********************************************************************************
 ;; End of the init script
@@ -262,3 +292,5 @@
 ;;********************************************************************************
 ;; End of the init script
 ;;********************************************************************************
+(put 'upcase-region 'disabled nil)
+(put 'downcase-region 'disabled nil)
