@@ -1,7 +1,7 @@
-;;********************************************************************************
+;;++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ;; Start - Global configs
 ;; This is the standard stuffs we want to use
-;;********************************************************************************
+;;++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 ;; Switch caps-lock and right ctrl
 (global-set-key "\C-x\C-m" 'execute-extended-command)
@@ -247,7 +247,8 @@
 ;; Enable autopep8
 ;; (require 'py-autopep8)
 ;; (add-hook 'elpy-mode-hook 'py-autopep8-enable-on-save)
-
+(setq exec-path (append exec-path '("~/.pyenv/bin")))
+(pyenv-mode)
 
 
 ;;********************************************************************************

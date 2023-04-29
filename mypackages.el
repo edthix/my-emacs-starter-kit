@@ -52,8 +52,9 @@
     auto-virtualenv
     elpy
     flymake-python-pyflakes
-    virtualenv
     py-autopep8
+    pyenv-mode
+    virtualenv
 
     ;; 4. Erlang
     alchemist
