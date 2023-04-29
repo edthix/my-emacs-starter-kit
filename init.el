@@ -1,18 +1,13 @@
-;;++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-;; Start - Global configs
-;; This is the standard stuffs we want to use
-;;++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
 ;; Switch caps-lock and right ctrl
 (global-set-key "\C-x\C-m" 'execute-extended-command)
 (global-set-key "\C-c\C-m" 'execute-extended-command)
 (global-set-key (kbd "C-c TAB") 'indent-buffer-fn)
 
-;; fn quit shortcut key
+;; Some quit shortcut keys
 (global-set-key (kbd "C-M-g") 'keyboard-quit)
 (global-set-key (kbd "C-x C-g") 'keyboard-quit)
 
-;; indent the buffer
+;; Indent the buffer
 ;; http://stackoverflow.com/questions/4090793/emacs-reindenting-entire-c-buffer
 (defun indent-buffer-fn ()
   "Indents an entire buffer using the default intenting scheme."
@@ -22,6 +17,7 @@
     (indent-region (point-min) (point-max) nil)
     (untabify (point-min) (point-max))))
 
+;; Hack
 ;; Open init file for re-eval indent function.
 ;; Call at the end of init
 (defun fix-indent-eval ()
@@ -33,39 +29,67 @@
 ;; set ~/public_html as default director
 ;; (setq default-directory "C:/xampp/htdocs") ;; Windows
 ;; (setq default-directory "~/public_html") ;; Mac
-(setq default-directory "~/Projects") ;; Mac
+(setq default-directory "~/Projects") ;; Linux
 
-;; Put some kungfu for emacs
+;; Recentf
+;; https://www.emacswiki.org/emacs/RecentFiles
+;; I want to keep only latest only 25 items
 (recentf-mode t)
+(setq recentf-max-menu-items 25)
+(setq recentf-max-saved-items 25)
 
-;; turn transient
+;; Transient Mark Mode
+;; https://www.emacswiki.org/emacs/TransientMarkMode
 (transient-mark-mode t)
 
-;; turn line numbers on
+;; Line Numbers and Indentations
+;; Turn line numbers on
 (global-linum-mode t)
+;; 4 character and a space for line numbers
+(setq linum-format "%4d ")
+;; Always use 4 spaces to indentation
+(setq-default indent-tabs-mode nil)
+(setq-default tab-width 4)
 
+;; Life is boring with backup files
 (setq make-backup-files nil)
-(setq query-replace-highlight t)
+
+;; Search for strings
 (setq search-highlight t)
+(setq query-replace-highlight t)
+
+;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Font-Lock.html
 (setq font-lock-maximum-decoration t)
-(fset 'yes-or-no-p 'y-or-n-p)
+
+;;https://www.gnu.org/software/emacs/manual/html_node/emacs/Customize-Save.html
 (setq require-final-newline t)
+
+;; https://www.gnu.org/software/emacs/manual/html_node/eintr/Text-and-Auto_002dfill.html
+;; I want to have text-mode as default
 (setq major-mode 'text-mode)
+(add-hook 'text-mode-hook 'turn-on-auto-fill)
 
-;; turn on paren matching
+;; Turn on paren matching
+;; https://www.emacswiki.org/emacs/ShowParenMode
+;; https://emacs-fu.blogspot.com/2009/01/balancing-your-parentheses.html
 (show-paren-mode t)
-(setq show-paren-style 'mixed)
+(setq show-paren-style 'expression)
 
+;; Prompts and startups
+;; https://www.masteringemacs.org/article/disabling-prompts-emacs
 ;; Get rid of the startup screen
 (setq inhibit-startup-screen t)
+(setq inhibit-startup-message t
+      inhibit-startup-echo-area-message t)
 (setq initial-scratch-message nil)
+;; https://www.emacswiki.org/emacs/YesOrNoP
+(fset 'yes-or-no-p 'y-or-n-p)
 
 ;; Get back font antialiasing
-;; (push '(font-backend xft x) default-frame-alist);; Note: Breaks on Emacs 27.1
 (setq font-lock-maximum-decoration t)
 
-;; http://mixandgo.com/blog/how-i-ve-convinced-emacs-to-dance-with-ruby
 ;; Sets a 80 character line width
+;; http://mixandgo.com/blog/how-i-ve-convinced-emacs-to-dance-with-ruby
 (setq-default fill-column 80)
 
 ;; Enable copy/past-ing from clipboard
@@ -80,40 +104,38 @@
 ;; Treat the CMD key like meta on OSX
 (setq mac-command-modifier 'meta)
 
-;; 4 character and a space for line numbers
-(setq linum-format "%4d ")
-
-;; Always use 4 spaces to indentation
-(setq-default indent-tabs-mode nil)
-(setq-default tab-width 4)
-
-;; projectile key
-(global-set-key (kbd "C-c f") 'project-find-file)
-(global-set-key (kbd "C-c p") 'project-find-regexp)
-;; (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
-;; (projectile-mode 1)
-
-;; anzu mode
-;; (global-anzu-mode +1)
-;; (set-face-attribute 'anzu-mode-line nil
-;;                     :foreground "yellow" :weight 'bold)
-
-;; Turn ido mode
-(ido-mode t)
-
-;; Turn on which-key mode
-;; (which-key-mode t)
-;; (which-key-setup-side-window-right-bottom)
-
 ;; Turn off tool-bar
 (tool-bar-mode 0)
 
-;; Enable company mode in all buffer
-(add-hook 'after-init-hook 'global-company-mode)
+;; Set some defaults
+(require 'package)
+(add-to-list 'package-archives
+             '("melpa" . "http://melpa.org/packages/") t)
+(package-initialize)
 
-;; whitespace hacks
+;; Projectile
+;; https://projectile.mx
+(projectile-mode 1)
+(global-set-key (kbd "C-c a") 'projectile-command-map)
+(global-set-key (kbd "C-c f") 'projectile-find-file)
+(global-set-key (kbd "C-c g") 'projectile-grep)
+
+;; Ido Mode
+;; https://www.masteringemacs.org/article/introduction-to-ido-mode
+(setq ido-enable-flex-matching t)
+(setq ido-everywhere t)
+(ido-mode 1)
+
+;; Company Mode
+;; https://company-mode.github.io/
+(add-hook 'after-init-hook 'global-company-mode)
+;; Make company-mode fast to react
+(setq company-minimum-prefix-length 2)
+(setq company-idle-delay
+      (lambda () (if (company-in-string-or-comment) nil 0.3)))
+
+;; Whitespace
 ;; limit line length
-(require 'whitespace)
 (setq whitespace-line-column 80)
 (setq whitespace-style '(spaces tabs newline space-mark tab-mark newline-mark face lines-tail))
 (setq whitespace-display-mappings
@@ -125,44 +147,18 @@
         ))
 (setq whitespace-global-modes '(not org-mode web-mode "Web" emacs-lisp-mode))
 (global-whitespace-mode)
-
-;; enable narrow-to-region mode all the time
-(put 'narrow-to-region 'disabled nil)
-
 ;; remove trailing whitespaces
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
-;; verb-mode
-(with-eval-after-load 'org
-  (define-key org-mode-map (kbd "C-c C-r") verb-command-map))
-
-
-;;********************************************************************************
-;; End - Global configs
-;;********************************************************************************
-
-
-;;********************************************************************************
-;; Start - Packages configs
-;;********************************************************************************
-
-;; Set some defaults
-(require 'package)
-(add-to-list 'package-archives
-             '("melpa" . "http://melpa.org/packages/") t)
-(package-initialize)
-
-;;********************************************************************************
-;; End - Packages configs
-;;********************************************************************************
-
+;; Narrow To Region Mode
+(put 'narrow-to-region 'disabled nil)
 
 ;;********************************************************************************
 ;; Start - Clojure configs
 ;;********************************************************************************
+
 ;; we want to run cider
 (add-to-list 'exec-path "/usr/local/bin")
-
 (add-to-list 'auto-mode-alist '("\\.clj$" . clojure-mode))
 
 ;; Enable paredit-mode
@@ -201,11 +197,11 @@
 ;; End - Elixir configs
 ;;********************************************************************************
 
-
 ;;********************************************************************************
 ;; Start - Web configs
 ;; http://www.cyrusinnovation.com/initial-emacs-setup-for-reactreactnative/
 ;;********************************************************************************
+
 ;; web-mode
 (require 'web-mode)
 (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
@@ -225,6 +221,7 @@
 ;;********************************************************************************
 ;; Start - Angular2 configs
 ;;********************************************************************************
+
 (add-to-list 'auto-mode-alist '("\\component.html?$" . ng2-mode))
 
 ;;********************************************************************************
@@ -235,18 +232,6 @@
 ;; Start - Python configs
 ;;********************************************************************************
 
-;; (elpy-enable)
-;; https://emacs.stackexchange.com/questions/53383/python-shell-warning-about-readline-and-completion
-;; (setq python-shell-completion-native-enable nil)
-
-;; Enable Flycheck
-;; (when (require 'flycheck nil t)
-;;   (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
-;;   (add-hook 'elpy-mode-hook 'flycheck-mode))
-
-;; Enable autopep8
-;; (require 'py-autopep8)
-;; (add-hook 'elpy-mode-hook 'py-autopep8-enable-on-save)
 (setq exec-path (append exec-path '("~/.pyenv/bin")))
 (pyenv-mode)
 
@@ -258,7 +243,6 @@
 ;;********************************************************************************
 ;; Start - TypeScript configs
 ;;********************************************************************************
-;; (add-hook 'typescript-mode-hook '(setq tab-width 2))
 
 (add-hook 'typescript-mode-hook
           (lambda ()
@@ -273,16 +257,13 @@
 ;;********************************************************************************
 ;; Start - Dbdiagram configs
 ;;********************************************************************************
+
 (load-file "~/.emacs.d/third-parties/dbd-mode/dbdiagram-mode.el")
 
 ;;********************************************************************************
 ;; End - Dbdiagram configs
 ;;********************************************************************************
 
-
-;;********************************************************************************
-;; End of the init script
-;;********************************************************************************
 (fix-indent-eval) ;; start emacs and go to init tab function above
 (load-theme 'material t)
 

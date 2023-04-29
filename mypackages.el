@@ -3,10 +3,10 @@
   '(
     ;; 1. Useful
     ansi
-    anzu
     auto-complete
     better-defaults
     company
+    dashboard
     direx
     discover
     emamux
