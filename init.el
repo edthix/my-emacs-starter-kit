@@ -17,7 +17,7 @@
     (indent-region (point-min) (point-max) nil)
     (untabify (point-min) (point-max))))
 
-;; Hack
+;; [HACK]
 ;; Open init file for re-eval indent function.
 ;; Call at the end of init
 (defun fix-indent-eval ()
@@ -26,17 +26,15 @@
   (goto-char 194)
   (end-of-line))
 
-;; set ~/public_html as default director
-;; (setq default-directory "C:/xampp/htdocs") ;; Windows
-;; (setq default-directory "~/public_html") ;; Mac
+;; Set the default directory to work with
 (setq default-directory "~/Projects") ;; Linux
 
 ;; Recentf
 ;; https://www.emacswiki.org/emacs/RecentFiles
-;; I want to keep only latest only 25 items
+;; I want to keep only latest only 50 items
 (recentf-mode t)
-(setq recentf-max-menu-items 25)
-(setq recentf-max-saved-items 25)
+(setq recentf-max-menu-items 50)
+(setq recentf-max-saved-items 50)
 
 ;; Transient Mark Mode
 ;; https://www.emacswiki.org/emacs/TransientMarkMode
@@ -51,7 +49,6 @@
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
 
-
 ;; Life is boring with backup files
 (setq make-backup-files nil)
 
@@ -65,8 +62,8 @@
 ;;https://www.gnu.org/software/emacs/manual/html_node/emacs/Customize-Save.html
 (setq require-final-newline t)
 
-;; https://www.gnu.org/software/emacs/manual/html_node/eintr/Text-and-Auto_002dfill.html
 ;; I want to have text-mode as default
+;; https://www.gnu.org/software/emacs/manual/html_node/eintr/Text-and-Auto_002dfill.html
 (setq major-mode 'text-mode)
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
 
@@ -105,8 +102,9 @@
 ;; Treat the CMD key like meta on OSX
 (setq mac-command-modifier 'meta)
 
-;; Turn off tool-bar
+;; Turn off tool-bar and menu-bar
 (tool-bar-mode 0)
+(menu-bar-mode 0)
 
 ;; Set some defaults
 (require 'package)
@@ -154,6 +152,12 @@
 ;; Narrow To Region Mode
 (put 'narrow-to-region 'disabled nil)
 
+;; Anzu
+;; https://github.com/emacsorphanage/anzu
+(global-anzu-mode t)
+(global-set-key [remap query-replace] 'anzu-query-replace)
+(global-set-key [remap query-replace-regexp] 'anzu-query-replace-regexp)
+
 ;; Dashboard
 ;; https://github.com/emacs-dashboard/emacs-dashboard
 (dashboard-setup-startup-hook)
@@ -163,10 +167,99 @@
 
 ;; start emacs and go to init tab function above
 (fix-indent-eval)
+
+;; Load the Material theme
 (load-theme 'material t)
 
 ;; Enable upcase and downcase
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
 
-(print "Emacs initialized")
+;; Direx
+;; https://github.com/emacsorphanage/direx
+(global-set-key (kbd "C-x C-j") 'direx:jump-to-directory)
+
+;; Enable highlight changes
+;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Highlight-Interactively.html
+(global-hi-lock-mode)
+
+;; exec-path-from-shell
+;; For merging emacs and user's $PATH
+;; Note : Use ~/.bash_profile instead of ~/.bashrc
+(exec-path-from-shell-initialize)
+
+;; beacon
+;; https://github.com/Malabarba/beacon
+(beacon-mode 1)
+
+;; Flymake
+(add-hook 'python-mode-hook 'flymake-mode)
+(add-hook 'web-mode-hook 'flymake-mode)
+(add-hook 'json-mode-hook 'flymake-mode)
+(add-hook 'js-mode-hook 'flymake-mode)
+(add-hook 'js2-mode-hook 'flymake-mode)
+
+;; [PYTHON]
+;; virtualenvwrapper
+;; https://github.com/porterjamesj/virtualenvwrapper.el
+(setq venv-location "~/.pyenv/versions")
+(venv-initialize-interactive-shells)
+(venv-initialize-eshell)
+;; blacken
+;; https://github.com/pythonic-emacs/blacken
+(add-hook 'python-mode-hook 'blacken-mode)
+;; py-autopep8
+;; https://github.com/emacsmirror/py-autopep8/tree/master
+(add-hook 'python-mode-hook 'py-autopep8-mode)
+
+;; [WEB]
+;; web-mode
+;; https://web-mode.org/
+(add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.svelte?\\'" . web-mode))
+(setq web-mode-markup-indent-offset 4)
+(setq web-mode-css-indent-offset 4)
+(setq web-mode-code-indent-offset 4)
+
+;; [JAVASCRIPT]
+;; js2-mode
+;; https://github.com/mooz/js2-mode
+(add-hook 'js-mode-hook 'js2-minor-mode)
+;; set indentations
+(setq-default js4-basic-offset 4)
+(setq-default js-indent-level 4)
+
+;; [JSON]
+;; json-reformat
+;; https://github.com/gongo/json-reformat
+(setq-default json-reformat:indent-width 4)
+
+;; [TYPESCRIPT]
+;; tide
+;; https://github.com/ananthakumaran/tide
+(defun setup-tide-mode ()
+  (interactive)
+  (tide-setup)
+  (flycheck-mode +1)
+  (setq flycheck-check-syntax-automatically '(save mode-enabled))
+  (eldoc-mode +1)
+  (tide-hl-identifier-mode +1)
+  ;; company is an optional dependency. You have to
+  ;; install it separately via package-install
+  ;; `M-x package-install [ret] company`
+  (company-mode +1))
+;; aligns annotation to the right hand side
+(setq company-tooltip-align-annotations t)
+;; formats the buffer before saving
+(add-hook 'before-save-hook 'tide-format-before-save)
+;; if you use typescript-mode
+(add-hook 'typescript-mode-hook #'setup-tide-mode)
+(setq tide-format-options '(:insertSpaceAfterFunctionKeywordForAnonymousFunctions t :placeOpenBraceOnNewLineForFunctions nil))
+(add-to-list 'auto-mode-alist '("\\.ts?\\'" . tide-mode))
+
+;; [TYPESCRIPT]
+;; typescript-mode. NOTE - stopped development
+;; https://github.com/emacs-typescript/
+(add-to-list 'auto-mode-alist '("\\.ts?\\'" . typescript-mode))
+
+(print "Emacs initialized!!")
