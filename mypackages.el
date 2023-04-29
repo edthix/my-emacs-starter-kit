@@ -2,95 +2,18 @@
 (defvar required-packages
   '(
     ;; 1. Useful
-    ansi
-    auto-complete
-    better-defaults
     company
     dashboard
     direx
-    discover
-    emamux
-    evalator
     exec-path-from-shell
-    flycheck
-    flymd
-    flyparens
     git-commit
-    helm
+    linum-relative
     magit
     magit-popup
     markdown-mode
     material-theme
     projectile
-    tide
-    xkcd
-    yasnippet
     zenburn-theme
-
-    ;; 2. webdev packages
-    ac-html
-    ac-html-bootstrap
-    ac-html-csswatcher
-    company-web
-    enlive
-    flymake-css
-    flymake-json
-    flymake-yaml
-    import-js
-    js2-mode
-    json-mode
-    json-reformat
-    json-snatcher
-    prettier-js
-    show-css
-    typescript-mode
-    web-beautify
-    web-mode
-    yaml-mode
-
-    ;; 3. python packages
-    auto-virtualenv
-    elpy
-    flymake-python-pyflakes
-    py-autopep8
-    pyenv-mode
-    virtualenv
-
-    ;; 4. Erlang
-    alchemist
-    auto-complete-distel
-    company-distel
-    edts
-    elixir-mode
-    elixir-yasnippets
-    erlang
-    erlstack-mode
-    flycheck-credo
-    flycheck-dialyxir
-    flycheck-dialyzer
-    flycheck-elixir
-    flymake-elixir
-    lfe-mode
-    ob-elixir
-
-    ;; 5. docker
-    docker
-    docker-api
-    docker-cli
-    docker-compose-mode
-    dockerfile-mode
-
-    ;; 6. kubernets
-    k8s-mode
-    kubel
-    kubernetes
-    kubernetes-helm
-    kubernetes-tramp
-
-    ;; 7. lsp
-    company-box
-    lsp-treemacs
-    lsp-ui
     ))
 
 ;; Set some defaults

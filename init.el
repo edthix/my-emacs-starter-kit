@@ -23,7 +23,7 @@
 (defun fix-indent-eval ()
   ;;(interactive "P")
   (find-file "~/.emacs.d/init.el")
-  (goto-char 433)
+  (goto-char 194)
   (end-of-line))
 
 ;; set ~/public_html as default director
@@ -50,6 +50,7 @@
 ;; Always use 4 spaces to indentation
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
+
 
 ;; Life is boring with backup files
 (setq make-backup-files nil)
@@ -153,126 +154,19 @@
 ;; Narrow To Region Mode
 (put 'narrow-to-region 'disabled nil)
 
-;;********************************************************************************
-;; Start - Clojure configs
-;;********************************************************************************
+;; Dashboard
+;; https://github.com/emacs-dashboard/emacs-dashboard
+(dashboard-setup-startup-hook)
+(setq dashboard-banner-logo-title "It's coding time")
+(setq dashboard-startup-banner 'logo)
+(setq dashboard-center-content t)
 
-;; we want to run cider
-(add-to-list 'exec-path "/usr/local/bin")
-(add-to-list 'auto-mode-alist '("\\.clj$" . clojure-mode))
-
-;; Enable paredit-mode
-(add-hook 'clojure-mode-hook #'paredit-mode)
-(add-hook 'cider-repl-mode-hook #'paredit-mode)
-
-;; Enable rainbow-delimiters-mode
-(add-hook 'clojure-mode-hook #'rainbow-delimiters-mode)
-(add-hook 'cider-repl-mode-hook #'rainbow-delimiters-mode)
-
-;; Auto complete mode
-(add-hook 'clojure-mode-hook 'auto-complete-mode)
-
-;; ;; Enable el-doc-mode
-(add-hook 'clojure-mode-hook #'eldoc-mode)
-(add-hook 'cider-repl-mode-hook #'eldoc-mode)
-
-;;********************************************************************************
-;; End - Clojure configs
-;;********************************************************************************
-
-;;********************************************************************************
-;; Start - Elixir configs
-;;********************************************************************************
-(require 'elixir-mode)
-(add-to-list 'auto-mode-alist '("\\.elixir\\'" . elixir-mode))
-(add-to-list 'auto-mode-alist '("\\.exs\\'" . elixir-mode))
-(add-to-list 'auto-mode-alist '("\\.ex\\'" . elixir-mode))
-(add-to-list 'elixir-mode-hook 'alchemist-mode)
-(add-to-list 'elixir-mode-hook 'yas-minor-mode)
-(add-to-list 'elixir-mode-hook 'auto-complete-mode)
-(add-to-list 'elixir-mode-hook 'company-mode)
-(add-to-list 'auto-mode-alist '("\\.html.eex\\'" . web-mode))
-
-;;********************************************************************************
-;; End - Elixir configs
-;;********************************************************************************
-
-;;********************************************************************************
-;; Start - Web configs
-;; http://www.cyrusinnovation.com/initial-emacs-setup-for-reactreactnative/
-;;********************************************************************************
-
-;; web-mode
-(require 'web-mode)
-(add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.rhtml\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.jsx?$" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.html?$" . web-mode))
-
-(setq web-mode-markup-indent-offset 2
-      web-mode-css-indent-offset 2
-      web-mode-code-indent-offset 2)
-(setq js-indent-level 2)
-
-;;********************************************************************************
-;; End - Web configs
-;;********************************************************************************
-
-;;********************************************************************************
-;; Start - Angular2 configs
-;;********************************************************************************
-
-(add-to-list 'auto-mode-alist '("\\component.html?$" . ng2-mode))
-
-;;********************************************************************************
-;; End - Angular2 configs
-;;********************************************************************************
-
-;;********************************************************************************
-;; Start - Python configs
-;;********************************************************************************
-
-(setq exec-path (append exec-path '("~/.pyenv/bin")))
-(pyenv-mode)
-
-
-;;********************************************************************************
-;; End - Python configs
-;;********************************************************************************
-
-;;********************************************************************************
-;; Start - TypeScript configs
-;;********************************************************************************
-
-(add-hook 'typescript-mode-hook
-          (lambda ()
-            (when (string-match-p "^  [A-Za-z]" (buffer-string))
-              (make-variable-buffer-local 'typescript-indent-level)
-              (set-variable 'typescript-indent-level 2))))
-
-;;********************************************************************************
-;; End - TypeScript configs
-;;********************************************************************************
-
-;;********************************************************************************
-;; Start - Dbdiagram configs
-;;********************************************************************************
-
-(load-file "~/.emacs.d/third-parties/dbd-mode/dbdiagram-mode.el")
-
-;;********************************************************************************
-;; End - Dbdiagram configs
-;;********************************************************************************
-
-(fix-indent-eval) ;; start emacs and go to init tab function above
+;; start emacs and go to init tab function above
+(fix-indent-eval)
 (load-theme 'material t)
 
-;; Enable better-defaults
-(require 'better-defaults)
-
-(print "Emacs initialized")
-;;********************************************************************************
-;; End of the init script
-;;********************************************************************************
+;; Enable upcase and downcase
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
+
+(print "Emacs initialized")
