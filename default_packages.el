@@ -1,39 +1,55 @@
+;; Default packages to install after a fresh install of Emacs
 
-(defvar required-packages
+(defvar default-packages
   '(
     ;; 1. Useful
+    anzu
+    beacon
     company
     dashboard
     direx
     exec-path-from-shell
-    git-commit
     linum-relative
     magit
-    magit-popup
     markdown-mode
     material-theme
     projectile
-    zenburn-theme
+
+    ;; 2. Python
+    blacken
+    py-autopep8
+    virtualenvwrapper
+
+    ;; 3. Web
+    web-mode
+
+    ;; 4. JS
+    js2-mode
+    json-mode
+    json-reformat
+
+    ;; 5. TS
+    tide
     ))
 
-;; Set some defaults
-(require 'package)
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.org/packages/") t)
 (package-initialize)
 
 (defun packages-installed-p ()
-  (dolist (p required-packages)
+  (dolist (p default-packages)
     (when (not (package-installed-p p))
       t)))
 
-;; if not all packages are installed, check one by one and install the missing ones.
+(require 'package)
+
+;; if not all packages are installed, check one by one and install the missing ones from 'default-packages
 (unless (packages-installed-p)
   ;; check for new packages (package versions)
   (message "%s" "Emacs is now refreshing its package database...")
   (package-refresh-contents)
   (message "%s" " done.")
   ;; install the missing packages
-  (dolist (p required-packages)
+  (dolist (p default-packages)
     (when (not (package-installed-p p))
       (package-install p))))
