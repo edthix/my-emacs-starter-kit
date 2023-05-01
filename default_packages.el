@@ -6,6 +6,7 @@
     anzu
     beacon
     company
+    company-tabnine
     dashboard
     direx
     exec-path-from-shell
