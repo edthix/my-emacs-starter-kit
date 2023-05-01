@@ -26,13 +26,17 @@
     ;; 3. Web
     web-mode
 
-    ;; 4. JS
+    ;; 4. JavaScript
     js2-mode
     json-mode
     json-reformat
 
-    ;; 5. TS
+    ;; 5. TypeScript
     tide
+
+    ;; 6. Docker
+    docker-compose-mode
+    dockerfile-mode
     ))
 
 (add-to-list 'package-archives

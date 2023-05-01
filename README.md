@@ -44,3 +44,7 @@ Currently I'm running Emacs 27.2
 - tide - work with TypeScript
 - typescript-mode - major mode for TypeScript. Need this for Emacs version 29
   and below. Take note of the development halt status in github repo
+
+## 2.6 Docker development
+- docker-compose-mode - edit docker-compose files
+- dockerfile-mode - edit docker files
