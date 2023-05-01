@@ -135,7 +135,9 @@
       (lambda () (if (company-in-string-or-comment) nil 0.3)))
 ;; Tabnine
 ;; https://github.com/TommyX12/company-tabnine
+(require 'company-tabnine)
 (add-to-list 'company-backends #'company-tabnine)
+
 
 ;; Whitespace
 ;; limit line length
@@ -223,6 +225,7 @@
 (add-hook 'js-mode-hook 'minimap-mode)
 (add-hook 'js2-mode-hook 'minimap-mode)
 (add-hook 'typescript-mode-hook 'minimap-mode)
+
 
 ;; [PYTHON]
 ;; virtualenvwrapper
