@@ -23,6 +23,8 @@ Currently I'm running Emacs 27.2
 - markdown-mode - work with markdown
 - material-theme - my favorite theme
 - projectile - manage projects
+- yasnippet - template system which makes your life easier
+- yasnippet-snippets
 
 ## 2.2 Python development
 - blacken - format python code with `black`. Requires `black` installed

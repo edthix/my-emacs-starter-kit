@@ -14,6 +14,8 @@
     markdown-mode
     material-theme
     projectile
+    yasnippet
+    yasnippet-snippets
 
     ;; 2. Python
     blacken
