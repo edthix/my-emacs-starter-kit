@@ -222,6 +222,10 @@
 ;; py-autopep8
 ;; https://github.com/emacsmirror/py-autopep8/tree/master
 (add-hook 'python-mode-hook 'py-autopep8-mode)
+;; elpy
+;; https://elpy.readthedocs.io/en/latest/introduction.html
+;; enable elpy in python
+(add-hook `python-mode-hook 'elpy-enable)
 
 ;; [WEB]
 ;; web-mode

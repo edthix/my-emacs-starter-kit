@@ -28,6 +28,7 @@ Currently I'm running Emacs 27.2
 
 ## 2.2 Python development
 - blacken - format python code with `black`. Requires `black` installed
+- elpy - work with python projects
 - py-autopep8 - pep8 check. Requires `autopep8` installed
 - virtualenvwrapper - featureful virtualenv tool for Emacs
 

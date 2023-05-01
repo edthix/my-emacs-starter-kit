@@ -19,6 +19,7 @@
 
     ;; 2. Python
     blacken
+    elpy
     py-autopep8
     virtualenvwrapper
 
