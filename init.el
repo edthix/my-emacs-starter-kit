@@ -195,7 +195,6 @@
 ;; yasnippet
 ;; https://github.com/joaotavora/yasnippet
 ;; Turn this per buffer basis
-(yas-reload-all)
 (add-hook 'python-mode-hook 'yas-minor-mode)
 (add-hook 'web-mode-hook 'yas-minor-mode)
 (add-hook 'json-mode-hook 'yas-minor-mode)
