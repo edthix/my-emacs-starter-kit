@@ -210,6 +210,16 @@
 (add-hook 'js2-mode-hook 'flymake-mode)
 (add-hook 'typescript-mode-hook 'flymake-mode)
 
+
+;; minimap
+;; https://github.com/dengste/minimap
+(add-hook 'python-mode-hook 'minimap-mode)
+(add-hook 'web-mode-hook 'minimap-mode)
+(add-hook 'json-mode-hook 'minimap-mode)
+(add-hook 'js-mode-hook 'minimap-mode)
+(add-hook 'js2-mode-hook 'minimap-mode)
+(add-hook 'typescript-mode-hook 'minimap-mode)
+
 ;; [PYTHON]
 ;; virtualenvwrapper
 ;; https://github.com/porterjamesj/virtualenvwrapper.el
@@ -278,3 +288,16 @@
 (add-to-list 'auto-mode-alist '("\\.ts?\\'" . typescript-mode))
 
 (print "Emacs initialized!!")
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   '(minimap docker-compose-mode dockerfile-mode elpy yasnippet-snippets web-mode virtualenvwrapper typescript-mode tide py-autopep8 projectile material-theme markdown-mode magit linum-relative json-reformat json-mode js2-mode flymake-easy exec-path-from-shell direx dashboard blacken beacon anzu)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )

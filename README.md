@@ -22,6 +22,7 @@ Currently I'm running Emacs 27.2
 - magit - work with git
 - markdown-mode - work with markdown
 - material-theme - my favorite theme
+- minimap - minimap sidebar
 - projectile - manage projects
 - yasnippet - template system which makes your life easier
 - yasnippet-snippets
