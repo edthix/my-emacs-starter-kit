@@ -15,6 +15,7 @@ Currently I'm running Emacs 27.2
 - anzu - displays current match and total matches
 - beacon - cursor highlight
 - company - a great text completion framework
+- company-tabnine - uses machine learning to provide responsive, reliable, and relevant suggestions.
 - dashboard - startup dashboard for Emacs
 - direx - general purpose directory/tree explorer
 - exec-path-from-shell - ensure environment variables inside Emacs look the same as in the user's shell.

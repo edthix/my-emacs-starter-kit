@@ -130,8 +130,12 @@
 (add-hook 'after-init-hook 'global-company-mode)
 ;; Make company-mode fast to react
 (setq company-minimum-prefix-length 2)
+(setq company-show-numbers t)
 (setq company-idle-delay
       (lambda () (if (company-in-string-or-comment) nil 0.3)))
+;; Tabnine
+;; https://github.com/TommyX12/company-tabnine
+(add-to-list 'company-backends #'company-tabnine)
 
 ;; Whitespace
 ;; limit line length
@@ -288,16 +292,3 @@
 (add-to-list 'auto-mode-alist '("\\.ts?\\'" . typescript-mode))
 
 (print "Emacs initialized!!")
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   '(minimap docker-compose-mode dockerfile-mode elpy yasnippet-snippets web-mode virtualenvwrapper typescript-mode tide py-autopep8 projectile material-theme markdown-mode magit linum-relative json-reformat json-mode js2-mode flymake-easy exec-path-from-shell direx dashboard blacken beacon anzu)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
