@@ -209,6 +209,7 @@
 (add-hook 'json-mode-hook 'flymake-mode)
 (add-hook 'js-mode-hook 'flymake-mode)
 (add-hook 'js2-mode-hook 'flymake-mode)
+(add-hook 'typescript-mode-hook 'flymake-mode)
 
 ;; [PYTHON]
 ;; virtualenvwrapper
