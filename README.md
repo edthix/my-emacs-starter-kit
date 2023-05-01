@@ -25,6 +25,7 @@ Currently I'm running Emacs 27.2
 - material-theme - my favorite theme
 - minimap - minimap sidebar
 - projectile - manage projects
+- use-package - macro allows you to isolate package configuration
 - yasnippet - template system which makes your life easier
 - yasnippet-snippets
 

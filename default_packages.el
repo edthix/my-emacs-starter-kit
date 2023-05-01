@@ -16,6 +16,7 @@
     material-theme
     minimap
     projectile
+    use-package
     yasnippet
     yasnippet-snippets
 

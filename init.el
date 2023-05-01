@@ -10,7 +10,7 @@
 ;; Indent the buffer
 ;; http://stackoverflow.com/questions/4090793/emacs-reindenting-entire-c-buffer
 (defun indent-buffer-fn ()
-  "Indents an entire buffer using the default intenting scheme."
+  "Indent an entire buffer using the default intenting scheme."
   (interactive)
   (save-excursion
     (delete-trailing-whitespace)
@@ -21,7 +21,6 @@
 ;; Open init file for re-eval indent function.
 ;; Call at the end of init
 (defun fix-indent-eval ()
-  ;;(interactive "P")
   (find-file "~/.emacs.d/init.el")
   (goto-char 194)
   (end-of-line))
@@ -104,7 +103,7 @@
 
 ;; Turn off tool-bar and menu-bar
 (tool-bar-mode 0)
-(menu-bar-mode 0)
+(menu-bar-mode 1)
 
 ;; Set some defaults
 (require 'package)
@@ -135,8 +134,10 @@
       (lambda () (if (company-in-string-or-comment) nil 0.3)))
 ;; Tabnine
 ;; https://github.com/TommyX12/company-tabnine
-(require 'company-tabnine)
+;; (require 'company-tabnine)
+(use-package company-tabnine :ensure t)
 (add-to-list 'company-backends #'company-tabnine)
+
 
 
 ;; Whitespace
@@ -160,21 +161,27 @@
 
 ;; Anzu
 ;; https://github.com/emacsorphanage/anzu
-(global-anzu-mode t)
-(global-set-key [remap query-replace] 'anzu-query-replace)
-(global-set-key [remap query-replace-regexp] 'anzu-query-replace-regexp)
+(use-package anzu
+  :config
+  (global-anzu-mode t)
+  (global-set-key [remap query-replace] 'anzu-query-replace)
+  (global-set-key [remap query-replace-regexp] 'anzu-query-replace-regexp))
 
 ;; Dashboard
 ;; https://github.com/emacs-dashboard/emacs-dashboard
-(dashboard-setup-startup-hook)
-(setq dashboard-banner-logo-title "It's coding time")
-(setq dashboard-startup-banner 'logo)
-(setq dashboard-center-content t)
+(use-package dashboard
+  :ensure t
+  :config
+  (dashboard-setup-startup-hook)
+  (setq dashboard-banner-logo-title "It's coding time")
+  (setq dashboard-startup-banner 'logo)
+  (setq dashboard-center-content t)
+  )
 
-;; start emacs and go to init tab function above
+;; Start emacs and go to init tab function above
 (fix-indent-eval)
 
-;; Load the Material theme
+;; Load Material theme
 (load-theme 'material t)
 
 ;; Enable upcase and downcase
@@ -183,7 +190,8 @@
 
 ;; Direx
 ;; https://github.com/emacsorphanage/direx
-(global-set-key (kbd "C-x C-j") 'direx:jump-to-directory)
+(use-package direx
+  :bind (("C-x C-j" . direx:jump-to-directory)))
 
 ;; Enable highlight changes
 ;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Highlight-Interactively.html
@@ -192,21 +200,25 @@
 ;; exec-path-from-shell
 ;; For merging emacs and user's $PATH
 ;; Note : Use ~/.bash_profile instead of ~/.bashrc
-(exec-path-from-shell-initialize)
+(use-package exec-path-from-shell
+  :config (exec-path-from-shell-initialize))
 
 ;; beacon
 ;; https://github.com/Malabarba/beacon
-(beacon-mode 1)
+(use-package beacon
+  :config (beacon-mode 1))
 
 ;; yasnippet
 ;; https://github.com/joaotavora/yasnippet
 ;; Turn this per buffer basis
-(add-hook 'python-mode-hook 'yas-minor-mode)
-(add-hook 'web-mode-hook 'yas-minor-mode)
-(add-hook 'json-mode-hook 'yas-minor-mode)
-(add-hook 'js-mode-hook 'yas-minor-mode)
-(add-hook 'js2-mode-hook 'yas-minor-mode)
-(add-hook 'typescript-mode-hook 'yas-minor-mode)
+(use-package yasnippet
+  :init
+  (add-hook 'python-mode-hook 'yas-minor-mode)
+  (add-hook 'web-mode-hook 'yas-minor-mode)
+  (add-hook 'json-mode-hook 'yas-minor-mode)
+  (add-hook 'js-mode-hook 'yas-minor-mode)
+  (add-hook 'js2-mode-hook 'yas-minor-mode)
+  (add-hook 'typescript-mode-hook 'yas-minor-mode))
 
 ;; Flymake
 (add-hook 'python-mode-hook 'flymake-mode)
@@ -216,55 +228,72 @@
 (add-hook 'js2-mode-hook 'flymake-mode)
 (add-hook 'typescript-mode-hook 'flymake-mode)
 
-
 ;; minimap
 ;; https://github.com/dengste/minimap
-(add-hook 'python-mode-hook 'minimap-mode)
-(add-hook 'web-mode-hook 'minimap-mode)
-(add-hook 'json-mode-hook 'minimap-mode)
-(add-hook 'js-mode-hook 'minimap-mode)
-(add-hook 'js2-mode-hook 'minimap-mode)
-(add-hook 'typescript-mode-hook 'minimap-mode)
-
+(use-package minimap
+  :init
+  (setq minimap-active-region-background "pink4")
+  (setq minimap-current-line-face "deep sky blue")
+  (add-hook 'python-mode-hook 'minimap-mode)
+  (add-hook 'web-mode-hook 'minimap-mode)
+  (add-hook 'json-mode-hook 'minimap-mode)
+  (add-hook 'js-mode-hook 'minimap-mode)
+  (add-hook 'js2-mode-hook 'minimap-mode)
+  (add-hook 'typescript-mode-hook 'minimap-mode)
+  )
 
 ;; [PYTHON]
 ;; virtualenvwrapper
 ;; https://github.com/porterjamesj/virtualenvwrapper.el
-(setq venv-location "~/.pyenv/versions")
-(venv-initialize-interactive-shells)
-(venv-initialize-eshell)
+(use-package virtualenvwrapper
+  :init
+  (setq venv-location "~/.pyenv/versions")
+  :config
+  (venv-initialize-interactive-shells)
+  (venv-initialize-eshell))
 ;; blacken
 ;; https://github.com/pythonic-emacs/blacken
-(add-hook 'python-mode-hook 'blacken-mode)
+(use-package blacken
+  :init
+  (add-hook 'python-mode-hook 'blacken-mode))
 ;; py-autopep8
 ;; https://github.com/emacsmirror/py-autopep8/tree/master
-(add-hook 'python-mode-hook 'py-autopep8-mode)
+(use-package py-autopep8
+  :init
+  (add-hook 'python-mode-hook 'py-autopep8-mode))
 ;; elpy
 ;; https://elpy.readthedocs.io/en/latest/introduction.html
 ;; enable elpy in python
-(add-hook `python-mode-hook 'elpy-enable)
+(use-package elpy
+  :init
+  (add-hook `python-mode-hook 'elpy-enable))
 
 ;; [WEB]
 ;; web-mode
 ;; https://web-mode.org/
-(add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.svelte?\\'" . web-mode))
-(setq web-mode-markup-indent-offset 4)
-(setq web-mode-css-indent-offset 4)
-(setq web-mode-code-indent-offset 4)
+(use-package web-mode
+  :init
+  (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.svelte?\\'" . web-mode))
+  (setq web-mode-markup-indent-offset 4)
+  (setq web-mode-css-indent-offset 4)
+  (setq web-mode-code-indent-offset 4))
 
 ;; [JAVASCRIPT]
 ;; js2-mode
 ;; https://github.com/mooz/js2-mode
-(add-hook 'js-mode-hook 'js2-minor-mode)
-;; set indentations
-(setq-default js4-basic-offset 4)
-(setq-default js-indent-level 4)
+(use-package js2-mode
+  :init
+  (add-hook 'js-mode-hook 'js2-minor-mode)
+  (setq-default js4-basic-offset 4)
+  (setq-default js-indent-level 4))
 
 ;; [JSON]
 ;; json-reformat
 ;; https://github.com/gongo/json-reformat
-(setq-default json-reformat:indent-width 4)
+(use-package json-reformat
+  :init
+  (setq-default json-reformat:indent-width 4))
 
 ;; [TYPESCRIPT]
 ;; tide
@@ -292,6 +321,8 @@
 ;; [TYPESCRIPT]
 ;; typescript-mode. NOTE - stopped development
 ;; https://github.com/emacs-typescript/
-(add-to-list 'auto-mode-alist '("\\.ts?\\'" . typescript-mode))
+(use-package typescript-mode
+  :init
+  (add-to-list 'auto-mode-alist '("\\.ts?\\'" . typescript-mode)))
 
 (print "Emacs initialized!!")
