@@ -13,6 +13,7 @@
     magit
     markdown-mode
     material-theme
+    minimap
     projectile
     yasnippet
     yasnippet-snippets
