@@ -138,8 +138,6 @@
 (use-package company-tabnine :ensure t)
 (add-to-list 'company-backends #'company-tabnine)
 
-
-
 ;; Whitespace
 ;; limit line length
 (setq whitespace-line-column 80)
@@ -232,15 +230,12 @@
 ;; https://github.com/dengste/minimap
 (use-package minimap
   :init
-  (setq minimap-active-region-background "pink4")
-  (setq minimap-current-line-face "deep sky blue")
   (add-hook 'python-mode-hook 'minimap-mode)
   (add-hook 'web-mode-hook 'minimap-mode)
   (add-hook 'json-mode-hook 'minimap-mode)
   (add-hook 'js-mode-hook 'minimap-mode)
   (add-hook 'js2-mode-hook 'minimap-mode)
-  (add-hook 'typescript-mode-hook 'minimap-mode)
-  )
+  (add-hook 'typescript-mode-hook 'minimap-mode))
 
 ;; [PYTHON]
 ;; virtualenvwrapper
@@ -326,3 +321,16 @@
   (add-to-list 'auto-mode-alist '("\\.ts?\\'" . typescript-mode)))
 
 (print "Emacs initialized!!")
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(minimap-width-fraction 0.1))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(minimap-active-region-background ((t (:extend t :background "dark gray"))))
+ '(minimap-current-line-face ((t (:background "blue")))))
