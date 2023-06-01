@@ -303,14 +303,11 @@
 ;; chatgpt-shell
 (use-package chatgpt-shell
   :ensure t)
-;; (setq chatgpt-shell-openai-key "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")
-;; (setq dall-e-shell-openai-key "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")
-
 (require 'subr-x)
-
 (with-temp-buffer
   (insert-file-contents "./openai-key.txt")
   (setq chatgpt-shell-openai-key (string-trim (buffer-string)))
   (setq dall-e-shell-openai-key (string-trim (buffer-string))))
 (print "OpenAi key successfully loaded")
+
 (print "Emacs initialized!!")
