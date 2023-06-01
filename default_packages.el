@@ -5,8 +5,10 @@
     ;; 1. Useful
     anzu
     beacon
+    chatgpt-shell
     company
     company-tabnine
+    dall-e-shell
     dashboard
     direx
     exec-path-from-shell

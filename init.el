@@ -132,11 +132,6 @@
 (setq company-show-numbers t)
 (setq company-idle-delay
       (lambda () (if (company-in-string-or-comment) nil 0.3)))
-;; Tabnine
-;; https://github.com/TommyX12/company-tabnine
-;; (require 'company-tabnine)
-(use-package company-tabnine :ensure t)
-(add-to-list 'company-backends #'company-tabnine)
 
 ;; Whitespace
 ;; limit line length
@@ -298,4 +293,24 @@
   :init
   (add-to-list 'auto-mode-alist '("\\.ts?\\'" . typescript-mode)))
 
+
+;; [AI]
+;; Tabnine
+;; https://github.com/TommyX12/company-tabnine
+;; (require 'company-tabnine)
+(use-package company-tabnine :ensure t)
+(add-to-list 'company-backends #'company-tabnine)
+;; chatgpt-shell
+(use-package chatgpt-shell
+  :ensure t)
+;; (setq chatgpt-shell-openai-key "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")
+;; (setq dall-e-shell-openai-key "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")
+
+(require 'subr-x)
+
+(with-temp-buffer
+  (insert-file-contents "./openai-key.txt")
+  (setq chatgpt-shell-openai-key (string-trim (buffer-string)))
+  (setq dall-e-shell-openai-key (string-trim (buffer-string))))
+(print "OpenAi key successfully loaded")
 (print "Emacs initialized!!")
