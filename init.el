@@ -221,6 +221,9 @@
 (add-hook 'js2-mode-hook 'flymake-mode)
 (add-hook 'typescript-mode-hook 'flymake-mode)
 
+;; paredit
+(add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode)
+
 ;; [PYTHON]
 ;; virtualenvwrapper
 ;; https://github.com/porterjamesj/virtualenvwrapper.el
