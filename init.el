@@ -224,6 +224,13 @@
 ;; paredit
 (add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode)
 
+;; jinx
+;; https://github.com/minad/jinx
+(use-package jinx
+  :hook (emacs-startup . global-jinx-mode)
+  :bind (("M-$" . jinx-correct)
+         ("C-M-$" . jinx-languages)))
+
 ;; [PYTHON]
 ;; virtualenvwrapper
 ;; https://github.com/porterjamesj/virtualenvwrapper.el
