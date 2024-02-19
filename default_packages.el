@@ -42,6 +42,11 @@
     ;; 6. Docker
     docker-compose-mode
     dockerfile-mode
+
+    ;; 7. Terraform
+    company-terraform
+    terraform-doc
+    terraform-mode
     ))
 
 (add-to-list 'package-archives
