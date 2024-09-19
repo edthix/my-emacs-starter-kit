@@ -47,6 +47,11 @@
     company-terraform
     terraform-doc
     terraform-mode
+
+    ;; 8. Clojure
+    clojure-mode
+    cider
+    inf-clojure
     ))
 
 (add-to-list 'package-archives
